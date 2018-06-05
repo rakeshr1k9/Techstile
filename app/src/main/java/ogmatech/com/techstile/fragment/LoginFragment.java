@@ -1,5 +1,7 @@
 package ogmatech.com.techstile.fragment;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,6 +17,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import ogmatech.com.techstile.BaseActivity;
+import ogmatech.com.techstile.DashboardActivity;
+import ogmatech.com.techstile.OrderActivity;
 import ogmatech.com.techstile.R;
 import ogmatech.com.techstile.api.ApiClient;
 import ogmatech.com.techstile.api.LoginApi;
@@ -89,7 +93,10 @@ public class LoginFragment extends Fragment {
                 //List<Movie> movies = response.body().getResults();
                 Log.d("LoginFragment", "Number of movies received: " + response.body());
                 Toast.makeText(getContext(), "Valid entries", Toast.LENGTH_LONG).show();
-                ((BaseActivity)getActivity()).addFragment(new AllOrderFragment(), "AllOrderFragment");
+              //  ((BaseActivity)getActivity()).addFragment(new AllOrderFragment(), "AllOrderFragment");
+                Intent intent = new Intent(getActivity(), DashboardActivity.class);
+                startActivity(intent);
+                ((Activity) getActivity()).overridePendingTransition(0,0);
             }
 
             @Override
