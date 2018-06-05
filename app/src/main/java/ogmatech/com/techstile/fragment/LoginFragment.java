@@ -14,36 +14,30 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import ogmatech.com.techstile.BaseActivity;
 import ogmatech.com.techstile.R;
 import ogmatech.com.techstile.api.ApiClient;
-import ogmatech.com.techstile.api.LoginInterface;
+import ogmatech.com.techstile.api.LoginApi;
 import ogmatech.com.techstile.model.Token;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
- * Created by Rakesh on 24-02-2018.
+ * Created by Pavan on 04-06-2018.
  */
 
 public class LoginFragment extends Fragment {
 
-   // @BindView(R.id.usernameLayout)
     TextInputLayout userNameLayout;
-    //@BindView(R.id.usernameEditText)
     EditText userNameEditText;
-    //@BindView(R.id.passwordLayout)
     TextInputLayout passwordLayout;
-    //@BindView(R.id.passwordEditText)
     EditText passwordEditText;
-    //@BindView(R.id.loginButton)
     Button loginButton;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.login_fragment, container, false);
-        //ButterKnife.setDebug(true);
-       // ButterKnife.bind(this, view);
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
         userNameLayout = view.findViewById(R.id.usernameLayout);
         userNameEditText = view.findViewById(R.id.usernameEditText);
         passwordLayout = view.findViewById(R.id.passwordLayout);
@@ -85,16 +79,17 @@ public class LoginFragment extends Fragment {
     }
 
     private void login() {
-        LoginInterface loginService =
-                ApiClient.getClient().create(LoginInterface.class);
+        LoginApi loginService =
+                ApiClient.getClient(getContext(), false).create(LoginApi.class);
 
-        Call<Token> call = loginService.getToken("password", "user", "password1");
+        Call<Token> call = loginService.getToken("password", "user1", "123");
         call.enqueue(new Callback<Token>() {
             @Override
-            public void onResponse(Call<Token>call, Response<Token> response) {
+            public void onResponse(Call<Token> call, Response<Token> response) {
                 //List<Movie> movies = response.body().getResults();
                 Log.d("LoginFragment", "Number of movies received: " + response.body());
                 Toast.makeText(getContext(), "Valid entries", Toast.LENGTH_LONG).show();
+                ((BaseActivity)getActivity()).addFragment(new AllOrderFragment(), "AllOrderFragment");
             }
 
             @Override

@@ -1,17 +1,13 @@
 package ogmatech.com.techstile;
 
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.FrameLayout;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
- * Created by Rakesh on 24-02-2018.
+ * Created by Pavan on 04-06-2018.
  */
 
 public abstract class BaseActivity extends AppCompatActivity {
@@ -26,6 +22,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.fragment_holder, fragment, tag)
+                .addToBackStack(tag)
                 .commit();
     }
 }

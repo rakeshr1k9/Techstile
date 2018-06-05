@@ -12,4 +12,12 @@ public class LoginActivity extends BaseActivity {
         LoginFragment loginFragment = new LoginFragment();
         addFragment(loginFragment, "Login");
     }
+
+   /* @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if(getSupportFragmentManager().getBackStackEntryCount() > 1) {
+            getSupportFragmentManager().popBackStack();
+        }
+    */
 }
