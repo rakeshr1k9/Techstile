@@ -6,9 +6,9 @@ public class Order {
 
     private Long idOrder;
     private Integer orderTotalAmount;
-    private Date orderReceivedAt;
+    private String orderReceivedAt;
     private Date orderShouldDeliverAt;
-    private Date orderDeliveredAt;
+    private String orderDeliveredAt;
     private String orderBagNumber;
     private Byte isQuickDeivery;
     private Byte isDeleted;
@@ -21,6 +21,30 @@ public class Order {
     private Long branchId;
     private Long orderStatusId;
     private Long orderTypeId;
+
+    public Order(Long idOrder, String orderReceivedAt, String orderDeliveredAt, String orderBagNumber) {
+        this.idOrder = idOrder;
+        this.orderReceivedAt = orderReceivedAt;
+        this.orderDeliveredAt = orderDeliveredAt;
+        this.orderBagNumber = orderBagNumber;
+    }
+
+
+    public String getOrderDeliveredAt() {
+        return orderDeliveredAt;
+    }
+
+    public String getOrderReceivedAt() {
+        return orderReceivedAt;
+    }
+
+    public void setOrderReceivedAt(String orderReceivedAt) {
+        this.orderReceivedAt = orderReceivedAt;
+    }
+
+    public void setOrderDeliveredAt(String orderDeliveredAt) {
+        this.orderDeliveredAt = orderDeliveredAt;
+    }
 
     public Long getIdOrder() {
         return idOrder;
@@ -38,14 +62,6 @@ public class Order {
         this.orderTotalAmount = orderTotalAmount;
     }
 
-    public Date getOrderReceivedAt() {
-        return orderReceivedAt;
-    }
-
-    public void setOrderReceivedAt(Date orderReceivedAt) {
-        this.orderReceivedAt = orderReceivedAt;
-    }
-
     public Date getOrderShouldDeliverAt() {
         return orderShouldDeliverAt;
     }
@@ -54,13 +70,6 @@ public class Order {
         this.orderShouldDeliverAt = orderShouldDeliverAt;
     }
 
-    public Date getOrderDeliveredAt() {
-        return orderDeliveredAt;
-    }
-
-    public void setOrderDeliveredAt(Date orderDeliveredAt) {
-        this.orderDeliveredAt = orderDeliveredAt;
-    }
 
     public String getOrderBagNumber() {
         return orderBagNumber;

@@ -8,10 +8,6 @@ import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
-/**
- * Created by Pavan on 04-06-2018.
- */
-
 public interface LoginApi {
     @Headers("Authorization: Basic dHJ1c3RlZC1jbGllbnQ6c2VjcmV0MTIz")
     @POST("oauth/token")

@@ -14,11 +14,12 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import ogmatech.com.techstile.R;
+import ogmatech.com.techstile.fragment.AllOrderFragment;
 import ogmatech.com.techstile.model.Order;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder> {
 
-    private Context mContext;
+    private Context context;
     private List<Order> orderList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
@@ -36,8 +37,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
         }
     }
 
-    public OrderAdapter(Context mContext, List<Order> orderList) {
-        this.mContext = mContext;
+    public OrderAdapter(Context context, List<Order> orderList) {
+      //  this.context = context;
         this.orderList = orderList;
     }
 
@@ -52,14 +53,15 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         Order order = orderList.get(position);
-        holder.orderNumber.setText("O" + order.getIdOrder());
-        holder.itemCompletionStatus.setText(order.getOrderBagNumber());
-        holder.receivedDate.setText(order.getOrderReceivedAt().toString());
-        holder.completionDate.setText(order.getOrderShouldDeliverAt().toString());
 
-        // loading album cover using Glide library
-        Glide.with(mContext).load(order.getIsQuickDeivery()).into(holder.quickOrder);
-        Glide.with(mContext).load(order.getOrderStatusId()).into(holder.orderStatus);
+        holder.orderNumber.setText("O - " + order.getIdOrder());
+        holder.itemCompletionStatus.setText(order.getOrderBagNumber());
+        holder.receivedDate.setText(order.getOrderReceivedAt());
+        holder.completionDate.setText(order.getOrderDeliveredAt());
+
+     /*   // loading album cover using Glide library
+        Glide.with(context).load(order.getIsQuickDeivery()).into(holder.quickOrder);
+        Glide.with(context).load(order.getOrderStatusId()).into(holder.orderStatus);*/
     }
 
     @Override

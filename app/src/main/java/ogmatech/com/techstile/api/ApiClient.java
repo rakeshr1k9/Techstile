@@ -1,9 +1,5 @@
 package ogmatech.com.techstile.api;
 
-/**
- * Created by Pavan on 04-04-2018.
- */
-
 import android.content.Context;
 
 import java.util.concurrent.TimeUnit;
@@ -17,10 +13,10 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-
 public class ApiClient {
 
     public static final String BASE_URL = "http://192.168.1.44:8090";
+    public static final String BASE_URL2 = "http://192.168.1.44:8090";
     private static Retrofit retrofit = null;
     private static OkHttpClient okHttpClient;
 
