@@ -1,6 +1,4 @@
-package ogmatech.com.techstile.api;
-
-import android.content.Context;
+package ogmatech.com.techstile.api.generic;
 
 import java.util.concurrent.TimeUnit;
 
@@ -17,26 +15,8 @@ public class ApiClient {
 
     public static final String BASE_URL = "http://192.168.1.44:8090";
     public static final String BASE_URL2 = "http://192.168.1.44:8090";
-    private static Retrofit retrofit = null;
-    private static OkHttpClient okHttpClient;
 
-    public static Retrofit getClient(Context context, boolean authenticationRequired) {
-
-        if (okHttpClient == null)
-            initOkHttp(context, authenticationRequired);
-
-        if (retrofit == null) {
-            retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .client(okHttpClient)
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-        }
-        return retrofit;
-    }
-
-    private static void initOkHttp(final Context context, boolean authenticationRequired) {
+    private static OkHttpClient initOkHttp(boolean addBearerToken) {
         int REQUEST_TIMEOUT = 60;
         OkHttpClient.Builder httpClient = new OkHttpClient().newBuilder()
                 .connectTimeout(REQUEST_TIMEOUT, TimeUnit.SECONDS)
@@ -54,9 +34,7 @@ public class ApiClient {
                     .addHeader("Accept", "application/json")
                     .addHeader("Content-Type", "application/json");
 
-            // Adding Authorization token (API Key)
-            // Requests will be denied without API key
-            if(authenticationRequired) {
+            if(addBearerToken) {
                 requestBuilder.addHeader("Authorization", TechstileApplication.getBearerToken());
             }
 
@@ -64,6 +42,30 @@ public class ApiClient {
             return chain.proceed(request);
         });
 
-        okHttpClient = httpClient.build();
+        return httpClient.build();
+    }
+
+    public static class Builder {
+        private boolean addBearerToken = true;
+        private String baseUrl = "http://192.168.1.44:8090";
+
+        public Builder setAddBearerToken(boolean addBearerToken) {
+            this.addBearerToken = addBearerToken;
+            return this;
+        }
+
+        public Builder setBaseUrl(String baseUrl) {
+            this.baseUrl = baseUrl;
+            return this;
+        }
+
+        public Retrofit build() {
+            return new Retrofit.Builder()
+                    .baseUrl(baseUrl)
+                    .client(initOkHttp(addBearerToken))
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
     }
 }

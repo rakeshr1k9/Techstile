@@ -1,6 +1,5 @@
 package ogmatech.com.techstile.fragment;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,16 +15,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import ogmatech.com.techstile.BaseActivity;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import ogmatech.com.techstile.DashboardActivity;
-import ogmatech.com.techstile.OrderActivity;
 import ogmatech.com.techstile.R;
-import ogmatech.com.techstile.api.ApiClient;
-import ogmatech.com.techstile.api.LoginApi;
-import ogmatech.com.techstile.model.Token;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import ogmatech.com.techstile.api.service.LoginService;
 
 public class LoginFragment extends Fragment {
 
@@ -53,12 +47,9 @@ public class LoginFragment extends Fragment {
     }
 
     private void setListener() {
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(validate()) {
-                    login();
-                }
+        loginButton.setOnClickListener(v -> {
+            if(validate()) {
+                login();
             }
         });
     }
@@ -79,28 +70,18 @@ public class LoginFragment extends Fragment {
     }
 
     private void login() {
-        LoginApi loginService =
-                ApiClient.getClient(getContext(), false).create(LoginApi.class);
-
-        Call<Token> call = loginService.getToken("password", "user1", "123");
-        call.enqueue(new Callback<Token>() {
-            @Override
-            public void onResponse(Call<Token> call, Response<Token> response) {
-                //List<Movie> movies = response.body().getResults();
-                Log.d("LoginFragment", "Number of movies received: " + response.body());
-                Toast.makeText(getContext(), "Valid entries", Toast.LENGTH_LONG).show();
-              //  ((BaseActivity)getActivity()).addFragment(new AllOrderFragment(), "AllOrderFragment");
-                Intent intent = new Intent(getActivity(), DashboardActivity.class);
-                startActivity(intent);
-                ((Activity) getActivity()).overridePendingTransition(0,0);
-            }
-
-            @Override
-            public void onFailure(Call<Token>call, Throwable t) {
-                // Log error here since request failed
-                Log.e("LoginFragment", t.toString());
-            }
-        });
-
+        LoginService.login("password", "user1", "123")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(token -> {
+                    Log.d("LoginFragment", "Number of movies received: " + token);
+                    Toast.makeText(getContext(), "Valid entries", Toast.LENGTH_LONG).show();
+                    //  ((BaseActivity)getActivity()).addFragment(new AllOrderFragment(), "AllOrderFragment");
+                    Intent intent = new Intent(getActivity(), DashboardActivity.class);
+                    startActivity(intent);
+                    (getActivity()).overridePendingTransition(0,0);
+                }, onError-> {
+                    Log.e("LoginFragment", onError.toString());
+                });
     }
 }
