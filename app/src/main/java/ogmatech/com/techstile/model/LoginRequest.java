@@ -1,9 +1,5 @@
 package ogmatech.com.techstile.model;
 
-/**
- * Created by Rakesh on 24-02-2018.
- */
-
 public class LoginRequest {
     String grant_type;
     String username;

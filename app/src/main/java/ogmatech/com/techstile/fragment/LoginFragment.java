@@ -27,10 +27,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Created by Pavan on 04-06-2018.
- */
-
 public class LoginFragment extends Fragment {
 
     TextInputLayout userNameLayout;

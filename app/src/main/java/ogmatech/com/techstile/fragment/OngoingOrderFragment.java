@@ -12,10 +12,6 @@ import android.view.ViewGroup;
 import ogmatech.com.techstile.R;
 import ogmatech.com.techstile.viewmodel.OrderViewModel;
 
-/**
- * Created by Pavan on 05-06-2018.
- */
-
 public class OngoingOrderFragment extends Fragment {
 
     public OngoingOrderFragment() {

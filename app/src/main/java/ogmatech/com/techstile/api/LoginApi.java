@@ -1,10 +1,5 @@
 package ogmatech.com.techstile.api;
 
-
-
-
-import android.util.Base64;
-
 import ogmatech.com.techstile.model.Token;
 import retrofit2.Call;
 import retrofit2.http.GET;

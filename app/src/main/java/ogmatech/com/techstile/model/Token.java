@@ -1,9 +1,5 @@
 package ogmatech.com.techstile.model;
 
-/**
- * Created by Rakesh on 24-02-2018.
- */
-
 public class Token {
     String access_token;
     String token_type;

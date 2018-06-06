@@ -5,11 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
-
-/**
- * Created by Pavan on 04-06-2018.
- */
-
 public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
