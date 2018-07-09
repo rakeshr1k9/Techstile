@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<searchable xmlns:android="http://schemas.android.com/apk/res/android"
+    android:hint="order no.. mobile no.. item no.."
+    android:label="@string/title_activity_base_drawer"
+    android:inputType="numberSigned" />

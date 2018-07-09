@@ -9,7 +9,7 @@ public class LoginService{
     private static LoginApi getApi () {
         return new ApiClient.Builder()
                 .setAddBearerToken(false)
-                .setBaseUrl("http://192.168.1.44:8090")
+                .setBaseUrl("http://192.168.1.44:8090/")
                 .build()
                 .create(LoginApi.class);
     }

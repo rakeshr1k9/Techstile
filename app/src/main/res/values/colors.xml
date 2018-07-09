@@ -10,4 +10,8 @@
     <color name="secondaryTextColor">#000000</color>
     <color name="colorAccent">#FF4081</color>
     <color name="timestamp">#4285f4</color>
+    <color name="orderOnTime">#1b5e20</color>
+    <color name="orderOneDay">#ff6f00</color>
+    <color name="orderDelay">#dd2c00</color>
+    <color name="orderDelivered">#212121</color>
 </resources>

@@ -4,53 +4,40 @@ import java.util.Date;
 
 public class Order {
 
-    private Long idOrder;
+    private Integer idOrder;
     private Integer orderTotalAmount;
-    private String orderReceivedAt;
+    private Date orderReceivedAt;
     private Date orderShouldDeliverAt;
-    private String orderDeliveredAt;
-    private String orderBagNumber;
-    private Byte isQuickDeivery;
+    private Date orderDeliveredAt;
+    private Byte isQuickDelivery;
     private Byte isDeleted;
     private Date orderCat;
     private Date orderUat;
-    private Long orderCreatedByUserId;
-    private Long orderDeliveredByUserId;
+    private String customerName;
+    private Long customerMobile;
+    private Integer orderTotalItem;
+    private Integer orderTotalItemCompleted;
+    private String customerTypeName;
+    private Integer orderNumber;
+    private String orderReceivedByUser;
+    private String orderUpdatedByUser;
+    private String orderDeliveredByUser;
+    private Integer branchId;
+    private Integer orderStatusId;
+    private String orderStatusName;
 
-    private Long customerId;
-    private Long branchId;
-    private Long orderStatusId;
-    private Long orderTypeId;
-
-    public Order(Long idOrder, String orderReceivedAt, String orderDeliveredAt, String orderBagNumber) {
+    /*public Order(Long idOrder, String orderReceivedAt, String orderDeliveredAt, String orderBagNumber) {
         this.idOrder = idOrder;
         this.orderReceivedAt = orderReceivedAt;
         this.orderDeliveredAt = orderDeliveredAt;
         this.orderBagNumber = orderBagNumber;
-    }
+    }*/
 
-
-    public String getOrderDeliveredAt() {
-        return orderDeliveredAt;
-    }
-
-    public String getOrderReceivedAt() {
-        return orderReceivedAt;
-    }
-
-    public void setOrderReceivedAt(String orderReceivedAt) {
-        this.orderReceivedAt = orderReceivedAt;
-    }
-
-    public void setOrderDeliveredAt(String orderDeliveredAt) {
-        this.orderDeliveredAt = orderDeliveredAt;
-    }
-
-    public Long getIdOrder() {
+    public Integer getIdOrder() {
         return idOrder;
     }
 
-    public void setIdOrder(Long idOrder) {
+    public void setIdOrder(Integer idOrder) {
         this.idOrder = idOrder;
     }
 
@@ -62,6 +49,14 @@ public class Order {
         this.orderTotalAmount = orderTotalAmount;
     }
 
+    public Date getOrderReceivedAt() {
+        return orderReceivedAt;
+    }
+
+    public void setOrderReceivedAt(Date orderReceivedAt) {
+        this.orderReceivedAt = orderReceivedAt;
+    }
+
     public Date getOrderShouldDeliverAt() {
         return orderShouldDeliverAt;
     }
@@ -70,21 +65,20 @@ public class Order {
         this.orderShouldDeliverAt = orderShouldDeliverAt;
     }
 
-
-    public String getOrderBagNumber() {
-        return orderBagNumber;
+    public Date getOrderDeliveredAt() {
+        return orderDeliveredAt;
     }
 
-    public void setOrderBagNumber(String orderBagNumber) {
-        this.orderBagNumber = orderBagNumber;
+    public void setOrderDeliveredAt(Date orderDeliveredAt) {
+        this.orderDeliveredAt = orderDeliveredAt;
     }
 
-    public Byte getIsQuickDeivery() {
-        return isQuickDeivery;
+    public Byte getIsQuickDelivery() {
+        return isQuickDelivery;
     }
 
-    public void setIsQuickDeivery(Byte isQuickDeivery) {
-        this.isQuickDeivery = isQuickDeivery;
+    public void setIsQuickDelivery(Byte isQuickDelivery) {
+        this.isQuickDelivery = isQuickDelivery;
     }
 
     public Byte getIsDeleted() {
@@ -111,51 +105,99 @@ public class Order {
         this.orderUat = orderUat;
     }
 
-    public Long getOrderCreatedByUserId() {
-        return orderCreatedByUserId;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setOrderCreatedByUserId(Long orderCreatedByUserId) {
-        this.orderCreatedByUserId = orderCreatedByUserId;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
-    public Long getOrderDeliveredByUserId() {
-        return orderDeliveredByUserId;
+    public Long getCustomerMobile() {
+        return customerMobile;
     }
 
-    public void setOrderDeliveredByUserId(Long orderDeliveredByUserId) {
-        this.orderDeliveredByUserId = orderDeliveredByUserId;
+    public void setCustomerMobile(Long customerMobile) {
+        this.customerMobile = customerMobile;
     }
 
-    public Long getCustomerId() {
-        return customerId;
+    public Integer getOrderTotalItem() {
+        return orderTotalItem;
     }
 
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
+    public void setOrderTotalItem(Integer orderTotalItem) {
+        this.orderTotalItem = orderTotalItem;
     }
 
-    public Long getBranchId() {
+    public Integer getOrderTotalItemCompleted() {
+        return orderTotalItemCompleted;
+    }
+
+    public void setOrderTotalItemCompleted(Integer orderTotalItemCompleted) {
+        this.orderTotalItemCompleted = orderTotalItemCompleted;
+    }
+
+    public String getCustomerTypeName() {
+        return customerTypeName;
+    }
+
+    public void setCustomerTypeName(String customerTypeName) {
+        this.customerTypeName = customerTypeName;
+    }
+
+    public Integer getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(Integer orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
+    public String getOrderReceivedByUser() {
+        return orderReceivedByUser;
+    }
+
+    public void setOrderReceivedByUser(String orderReceivedByUser) {
+        this.orderReceivedByUser = orderReceivedByUser;
+    }
+
+    public String getOrderUpdatedByUser() {
+        return orderUpdatedByUser;
+    }
+
+    public void setOrderUpdatedByUser(String orderUpdatedByUser) {
+        this.orderUpdatedByUser = orderUpdatedByUser;
+    }
+
+    public String getOrderDeliveredByUser() {
+        return orderDeliveredByUser;
+    }
+
+    public void setOrderDeliveredByUser(String orderDeliveredByUser) {
+        this.orderDeliveredByUser = orderDeliveredByUser;
+    }
+
+    public Integer getBranchId() {
         return branchId;
     }
 
-    public void setBranchId(Long branchId) {
+    public void setBranchId(Integer branchId) {
         this.branchId = branchId;
     }
 
-    public Long getOrderStatusId() {
+    public Integer getOrderStatusId() {
         return orderStatusId;
     }
 
-    public void setOrderStatusId(Long orderStatusId) {
+    public void setOrderStatusId(Integer orderStatusId) {
         this.orderStatusId = orderStatusId;
     }
 
-    public Long getOrderTypeId() {
-        return orderTypeId;
+    public String getOrderStatusName() {
+        return orderStatusName;
     }
 
-    public void setOrderTypeId(Long orderTypeId) {
-        this.orderTypeId = orderTypeId;
+    public void setOrderStatusName(String orderStatusName) {
+        this.orderStatusName = orderStatusName;
     }
 }

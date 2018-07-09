@@ -19,6 +19,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import ogmatech.com.techstile.DashboardActivity;
 import ogmatech.com.techstile.R;
+import ogmatech.com.techstile.TechstileApplication;
 import ogmatech.com.techstile.api.service.LoginService;
 
 public class LoginFragment extends Fragment {
@@ -48,9 +49,13 @@ public class LoginFragment extends Fragment {
 
     private void setListener() {
         loginButton.setOnClickListener(v -> {
-            if(validate()) {
+
+            login();
+
+            /*if(validate()) {
                 login();
-            }
+            }*/
+
         });
     }
 
@@ -75,6 +80,7 @@ public class LoginFragment extends Fragment {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(token -> {
                     Log.d("LoginFragment", "Number of movies received: " + token);
+                    TechstileApplication.setBearerToken("Bearer " + token.getAccess_token());
                     Toast.makeText(getContext(), "Valid entries", Toast.LENGTH_LONG).show();
                     //  ((BaseActivity)getActivity()).addFragment(new AllOrderFragment(), "AllOrderFragment");
                     Intent intent = new Intent(getActivity(), DashboardActivity.class);

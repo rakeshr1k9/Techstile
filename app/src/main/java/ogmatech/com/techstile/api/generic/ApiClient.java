@@ -13,9 +13,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    public static final String BASE_URL = "http://192.168.1.44:8090";
-    public static final String BASE_URL2 = "http://192.168.1.44:8090";
-
     private static OkHttpClient initOkHttp(boolean addBearerToken) {
         int REQUEST_TIMEOUT = 60;
         OkHttpClient.Builder httpClient = new OkHttpClient().newBuilder()
@@ -30,9 +27,9 @@ public class ApiClient {
 
         httpClient.addInterceptor(chain -> {
             Request original = chain.request();
-            Request.Builder requestBuilder = original.newBuilder()
-                    .addHeader("Accept", "application/json")
-                    .addHeader("Content-Type", "application/json");
+            Request.Builder requestBuilder = original.newBuilder();
+                   // .addHeader("Accept", "application/json")
+                   // .addHeader("Content-Type", "application/json");
 
             if(addBearerToken) {
                 requestBuilder.addHeader("Authorization", TechstileApplication.getBearerToken());
@@ -47,7 +44,7 @@ public class ApiClient {
 
     public static class Builder {
         private boolean addBearerToken = true;
-        private String baseUrl = "http://192.168.1.44:8090";
+        private String baseUrl = "http://192.168.1.44:8091/api/";
 
         public Builder setAddBearerToken(boolean addBearerToken) {
             this.addBearerToken = addBearerToken;
