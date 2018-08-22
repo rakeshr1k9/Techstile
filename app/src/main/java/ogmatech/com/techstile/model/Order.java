@@ -11,8 +11,6 @@ public class Order {
     private Date orderDeliveredAt;
     private Byte isQuickDelivery;
     private Byte isDeleted;
-    private Date orderCat;
-    private Date orderUat;
     private String customerName;
     private Long customerMobile;
     private Integer orderTotalItem;
@@ -22,16 +20,13 @@ public class Order {
     private String orderReceivedByUser;
     private String orderUpdatedByUser;
     private String orderDeliveredByUser;
-    private Integer branchId;
-    private Integer orderStatusId;
     private String orderStatusName;
+    private String orderBranchCode;
 
-    /*public Order(Long idOrder, String orderReceivedAt, String orderDeliveredAt, String orderBagNumber) {
-        this.idOrder = idOrder;
-        this.orderReceivedAt = orderReceivedAt;
-        this.orderDeliveredAt = orderDeliveredAt;
-        this.orderBagNumber = orderBagNumber;
-    }*/
+    private Customer customer;
+    private Branch branch;
+    private OrderStatus orderStatus;
+    private OrderType orderType;
 
     public Integer getIdOrder() {
         return idOrder;
@@ -87,22 +82,6 @@ public class Order {
 
     public void setIsDeleted(Byte isDeleted) {
         this.isDeleted = isDeleted;
-    }
-
-    public Date getOrderCat() {
-        return orderCat;
-    }
-
-    public void setOrderCat(Date orderCat) {
-        this.orderCat = orderCat;
-    }
-
-    public Date getOrderUat() {
-        return orderUat;
-    }
-
-    public void setOrderUat(Date orderUat) {
-        this.orderUat = orderUat;
     }
 
     public String getCustomerName() {
@@ -177,27 +156,51 @@ public class Order {
         this.orderDeliveredByUser = orderDeliveredByUser;
     }
 
-    public Integer getBranchId() {
-        return branchId;
-    }
-
-    public void setBranchId(Integer branchId) {
-        this.branchId = branchId;
-    }
-
-    public Integer getOrderStatusId() {
-        return orderStatusId;
-    }
-
-    public void setOrderStatusId(Integer orderStatusId) {
-        this.orderStatusId = orderStatusId;
-    }
-
     public String getOrderStatusName() {
         return orderStatusName;
     }
 
     public void setOrderStatusName(String orderStatusName) {
         this.orderStatusName = orderStatusName;
+    }
+
+    public String getOrderBranchCode() {
+        return orderBranchCode;
+    }
+
+    public void setOrderBranchCode(String orderBranchCode) {
+        this.orderBranchCode = orderBranchCode;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Branch getBranch() {
+        return branch;
+    }
+
+    public void setBranch(Branch branch) {
+        this.branch = branch;
+    }
+
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public OrderType getOrderType() {
+        return orderType;
+    }
+
+    public void setOrderType(OrderType orderType) {
+        this.orderType = orderType;
     }
 }

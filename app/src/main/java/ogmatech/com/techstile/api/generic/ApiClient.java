@@ -31,9 +31,9 @@ public class ApiClient {
                    // .addHeader("Accept", "application/json")
                    // .addHeader("Content-Type", "application/json");
 
-            if(addBearerToken) {
+            /*if(addBearerToken) {
                 requestBuilder.addHeader("Authorization", TechstileApplication.getBearerToken());
-            }
+            }*/
 
             Request request = requestBuilder.build();
             return chain.proceed(request);
@@ -44,7 +44,7 @@ public class ApiClient {
 
     public static class Builder {
         private boolean addBearerToken = true;
-        private String baseUrl = "http://192.168.1.44:8091/api/";
+        private String baseUrl = "http://192.168.1.144:8091/api/";
 
         public Builder setAddBearerToken(boolean addBearerToken) {
             this.addBearerToken = addBearerToken;

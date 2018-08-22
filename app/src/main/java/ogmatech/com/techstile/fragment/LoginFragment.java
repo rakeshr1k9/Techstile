@@ -21,6 +21,7 @@ import ogmatech.com.techstile.DashboardActivity;
 import ogmatech.com.techstile.R;
 import ogmatech.com.techstile.TechstileApplication;
 import ogmatech.com.techstile.api.service.LoginService;
+import ogmatech.com.techstile.controller.StaticInfoController;
 
 public class LoginFragment extends Fragment {
 
@@ -63,19 +64,25 @@ public class LoginFragment extends Fragment {
         String username = userNameEditText.getText().toString();
         String password = passwordEditText.getText().toString();
         boolean valid = true;
-        if(TextUtils.isEmpty(username)){
+        /*if(TextUtils.isEmpty(username)){
             userNameLayout.setError("Required");
             valid = false;
         }
         if(TextUtils.isEmpty(password)){
             passwordLayout.setError("Required");
             valid = false;
-        }
+        }*/
         return valid;
     }
 
     private void login() {
-        LoginService.login("password", "user1", "123")
+
+        StaticInfoController.getInstance().loadStaticInfo();
+
+        Intent intent = new Intent(getActivity(), DashboardActivity.class);
+        startActivity(intent);
+        (getActivity()).overridePendingTransition(0,0);
+       /* LoginService.login("password", "user1", "123")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(token -> {
@@ -88,6 +95,6 @@ public class LoginFragment extends Fragment {
                     (getActivity()).overridePendingTransition(0,0);
                 }, onError-> {
                     Log.e("LoginFragment", onError.toString());
-                });
+                });*/
     }
 }

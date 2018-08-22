@@ -1,22 +1,33 @@
 package ogmatech.com.techstile;
 
+import android.app.SearchManager;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.android.gms.common.api.CommonStatusCodes;
+import com.google.android.gms.vision.barcode.Barcode;
 
 import ogmatech.com.techstile.fragment.AllOrderFragment;
 import ogmatech.com.techstile.fragment.CompletedOrderFragment;
 import ogmatech.com.techstile.fragment.OngoingOrderFragment;
 import ogmatech.com.techstile.fragment.QuickOrderFragment;
 import ogmatech.com.techstile.fragment.TaggingOrderFragment;
+import ogmatech.com.techstile.model.SearchString;
 
 public class OrderActivity extends BaseDrawerActivity {
 
@@ -35,7 +46,7 @@ public class OrderActivity extends BaseDrawerActivity {
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = (ViewPager) findViewById(R.id.order_container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_order_list);
@@ -68,8 +79,7 @@ public class OrderActivity extends BaseDrawerActivity {
         }
 
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_order_all, container, false);
             //TextView textView = (TextView) rootView.findViewById(R.id.section_label);
            // textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
@@ -104,6 +114,7 @@ public class OrderActivity extends BaseDrawerActivity {
             }
         }
 
+        
         @Override
         public int getCount() {
             // Show 5 total pages.
@@ -126,6 +137,53 @@ public class OrderActivity extends BaseDrawerActivity {
             }
             return null;
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.activity_base_actions, menu);
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(new ComponentName(getApplicationContext(), OrderSearchActivity.class)));
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Take appropriate action for each action item click
+        switch (item.getItemId()) {
+            case R.id.action_cart:
+                Intent intent2 = new Intent(this, OrderCreateActivity.class);
+                startActivityForResult(intent2, 0);
+                return true;
+            case R.id.action_search:
+                // location found
+                return true;
+            case R.id.action_qrcode:
+                Intent intent = new Intent(this, BarcodeCaptureActivity.class);
+                startActivityForResult(intent, 0);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode==0){
+            if(requestCode == CommonStatusCodes.SUCCESS){
+                if(data != null){
+                    Barcode barcode = data.getParcelableExtra("barcode");
+                     SearchString.setSearchOrder(barcode.displayValue);
+                }
+                else {
+                    SearchString.setSearchOrder("");
+                }
+            }
+        }
+        Intent intent = new Intent(this, OrderSearchActivity.class);
+        startActivity(intent);
     }
 
 }

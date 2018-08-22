@@ -51,13 +51,13 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
     }
 
     public OrderAdapter(Context context, List<Order> orderList) {
-      //  this.context = context;
+       this.context = context;
         this.orderList = orderList;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
+        View itemView = LayoutInflater.from(context)
                 .inflate(R.layout.card_order, parent, false);
 
         return new MyViewHolder(itemView);
