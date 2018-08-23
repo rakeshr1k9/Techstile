@@ -98,17 +98,34 @@ public class OrderActivity extends BaseDrawerActivity {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
 
+            Bundle bundle = new Bundle();
+
             switch (position){
                 case 0:
-                    return new AllOrderFragment();
+                    bundle.putString("orderFilter","allOrder");
+                    AllOrderFragment allOrderFragment = new AllOrderFragment();
+                    allOrderFragment.setArguments(bundle);
+                    return allOrderFragment;
                 case 1:
-                    return new OngoingOrderFragment();
+                    bundle.putString("orderFilter","ongoingOrder");
+                    AllOrderFragment ongoingOrderFragment = new AllOrderFragment();
+                    ongoingOrderFragment.setArguments(bundle);
+                    return ongoingOrderFragment;
                 case 2:
-                    return new CompletedOrderFragment();
+                    bundle.putString("orderFilter","completedOrder");
+                    AllOrderFragment completedOrderFragment = new AllOrderFragment();
+                    completedOrderFragment.setArguments(bundle);
+                    return completedOrderFragment;
                 case 3:
-                    return new QuickOrderFragment();
+                    bundle.putString("orderFilter","quickOrder");
+                    AllOrderFragment quickOrderFragment = new AllOrderFragment();
+                    quickOrderFragment.setArguments(bundle);
+                    return quickOrderFragment;
                 case 4:
-                    return new TaggingOrderFragment();
+                    bundle.putString("orderFilter","taggingOrder");
+                    AllOrderFragment taggingOrderFragment = new AllOrderFragment();
+                    taggingOrderFragment.setArguments(bundle);
+                    return taggingOrderFragment;
                     default:
                         return PlaceholderFragment.newInstance(position + 1);
             }

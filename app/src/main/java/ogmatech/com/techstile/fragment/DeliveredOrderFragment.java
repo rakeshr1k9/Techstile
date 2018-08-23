@@ -55,7 +55,7 @@ public class DeliveredOrderFragment extends Fragment {
 
     private void getOrderList() {
         List<Integer> orderStatusId = new ArrayList<>();
-        orderStatusId.add(5);
+        orderStatusId.add(4);
         OrderService.getActiveOrders(orderStatusId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

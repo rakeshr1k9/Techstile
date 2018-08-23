@@ -2,28 +2,21 @@ package ogmatech.com.techstile.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.DrawableResource;
 import com.github.curioustechizen.ago.RelativeTimeTextView;
 
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import ogmatech.com.techstile.R;
-import ogmatech.com.techstile.fragment.AllOrderFragment;
 import ogmatech.com.techstile.model.Order;
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder> {
@@ -31,12 +24,12 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
     private Context context;
     private List<Order> orderList;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
-        public TextView orderNumber, customerInfo, orderTotalItem, orderTotalAmount ;
-        public RelativeTimeTextView orderReceivedAt, orderShouldDeliverAt;
-        public ImageView customerTypeName, orderStatusName, isQuickDelivery;
+    class MyViewHolder extends RecyclerView.ViewHolder{
+        private TextView orderNumber, customerInfo, orderTotalItem, orderTotalAmount ;
+        private RelativeTimeTextView orderReceivedAt, orderShouldDeliverAt;
+        private ImageView customerTypeName, orderStatusName, isQuickDelivery;
 
-        public MyViewHolder(View view) {
+        private MyViewHolder(View view) {
             super(view);
             orderNumber = view.findViewById(R.id.txt_order_list_order_number);
             customerInfo = view.findViewById(R.id.txt_order_list_customer_info);
@@ -55,8 +48,9 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
         this.orderList = orderList;
     }
 
+    @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(context)
                 .inflate(R.layout.card_order, parent, false);
 
@@ -64,7 +58,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
     }
 
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
 
         Calendar calendar = Calendar.getInstance();
         Date todayDate = Calendar.getInstance().getTime();
@@ -74,21 +68,21 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
 
         Order order = orderList.get(position);
 
-        holder.orderNumber.setText(order.getOrderNumber().toString());
+        holder.orderNumber.setText(String.valueOf(order.getOrderNumber()));
 
         if(order.getCustomerName().isEmpty()){
-            holder.customerInfo.setText(order.getCustomerMobile().toString());
+            holder.customerInfo.setText(String.valueOf(order.getCustomerMobile()));
         }
         else{
             holder.customerInfo.setText(order.getCustomerName());
         }
 
-        holder.orderTotalItem.setText(order.getOrderTotalItemCompleted().toString()+"/"+order.getOrderTotalItem().toString());
-        holder.orderTotalAmount.setText(order.getOrderTotalAmount().toString() + "/-");
+        holder.orderTotalItem.setText(String.valueOf(order.getOrderTotalItemCompleted())+"/"+String.valueOf(order.getOrderTotalItem()));
+        holder.orderTotalAmount.setText(String.valueOf(order.getOrderTotalAmount()) + "/-");
         holder.orderReceivedAt.setReferenceTime(order.getOrderReceivedAt().getTime());
 
 
-        if(order.getOrderStatusId()==5 || order.getOrderStatusId()==6) {
+        if(order.getOrderStatusId()==4 || order.getOrderStatusId()==5) {
             holder.orderShouldDeliverAt.setReferenceTime(order.getOrderDeliveredAt().getTime());
             holder.orderReceivedAt.setTextColor(Color.parseColor("#212121"));
             holder.orderShouldDeliverAt.setTextColor(Color.parseColor("#212121"));
@@ -142,19 +136,19 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.MyViewHolder
 
         switch (order.getOrderStatusId())
         {
-            case 2 :
+            case 1 :
                 holder.orderStatusName.setImageResource(R.mipmap.order_status_tag);
                 break;
 
-            case 3 :
+            case 2 :
                 holder.orderStatusName.setImageResource(R.mipmap.order_status_processing);
                 break;
 
-            case 4 :
+            case 3 :
                 holder.orderStatusName.setImageResource(R.mipmap.order_status_completed);
                 break;
 
-            case 5 :
+            case 4 :
                 holder.orderStatusName.setImageResource(R.mipmap.order_status_delivered);
                 break;
 

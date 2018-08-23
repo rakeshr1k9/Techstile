@@ -28,6 +28,11 @@ public class Order {
     private OrderStatus orderStatus;
     private OrderType orderType;
 
+    private Integer customerId;
+    private Integer branchId;
+    private Integer orderStatusId;
+    private Integer OrderTypeId;
+
     public Integer getIdOrder() {
         return idOrder;
     }
@@ -202,5 +207,37 @@ public class Order {
 
     public void setOrderType(OrderType orderType) {
         this.orderType = orderType;
+    }
+
+    public Integer getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
+    }
+
+    public Integer getBranchId() {
+        return branchId;
+    }
+
+    public void setBranchId(Integer branchId) {
+        this.branchId = branchId;
+    }
+
+    public Integer getOrderStatusId() {
+        return orderStatusId;
+    }
+
+    public void setOrderStatusId(Integer orderStatusId) {
+        this.orderStatusId = orderStatusId;
+    }
+
+    public Integer getOrderTypeId() {
+        return OrderTypeId;
+    }
+
+    public void setOrderTypeId(Integer orderTypeId) {
+        OrderTypeId = orderTypeId;
     }
 }

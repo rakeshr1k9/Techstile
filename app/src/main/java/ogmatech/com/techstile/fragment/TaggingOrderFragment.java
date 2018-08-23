@@ -56,7 +56,7 @@ public class TaggingOrderFragment extends Fragment {
 
     private void getOrderList() {
         List<Integer> orderStatusId = new ArrayList<>();
-        orderStatusId.add(2);
+        orderStatusId.add(1);
         OrderService.getActiveOrders(orderStatusId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

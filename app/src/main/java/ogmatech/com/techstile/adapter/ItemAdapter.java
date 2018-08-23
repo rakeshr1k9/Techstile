@@ -14,9 +14,11 @@ import java.util.List;
 
 import ogmatech.com.techstile.R;
 import ogmatech.com.techstile.model.Item;
+import ogmatech.com.techstile.model.ItemType;
 
-public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
-    private ArrayList<Item> itemList;
+//public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
+public class ItemAdapter {
+  /*  private ArrayList<ItemType> itemTypes;
 
     public interface ItemClickListener {
         void onItemClicked(Item item);
@@ -25,9 +27,9 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     private ItemClickListener itemClickListener;
 
     public ItemAdapter(List<Item> itemList, ItemClickListener itemClickListener) {
-        this.itemList = new ArrayList<>();
+        this.itemTypes = new ArrayList<>();
         this.itemClickListener = itemClickListener;
-        this.itemList.addAll(itemList);
+        this.itemTypes.addAll(itemTypes);
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
@@ -54,7 +56,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-        Item item = itemList.get(position);
+        Item item = itemTypes.get(position);
         holder.title.setText(item.getItemName());
         holder.thumbnail.setImageResource(R.drawable.ic_cart);
         holder.cardView.setOnClickListener(v -> itemClickListener.onItemClicked(item));
@@ -62,8 +64,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
     @Override
     public int getItemCount() {
-        return itemList.size();
+        return itemTypes.size();
     }
-
+*/
 
 }

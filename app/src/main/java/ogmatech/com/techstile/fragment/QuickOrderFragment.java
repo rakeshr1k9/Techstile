@@ -56,9 +56,9 @@ public class QuickOrderFragment extends Fragment {
 
     private void getOrderList() {
         List<Integer> orderStatusId = new ArrayList<>();
+        orderStatusId.add(1);
         orderStatusId.add(2);
         orderStatusId.add(3);
-        orderStatusId.add(4);
         OrderService.getQuickOrders(orderStatusId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

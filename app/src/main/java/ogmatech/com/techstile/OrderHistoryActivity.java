@@ -9,10 +9,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,12 +22,6 @@ import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
 
 import ogmatech.com.techstile.fragment.AllOrderFragment;
-import ogmatech.com.techstile.fragment.CancelledOrderFragment;
-import ogmatech.com.techstile.fragment.CompletedOrderFragment;
-import ogmatech.com.techstile.fragment.DeliveredOrderFragment;
-import ogmatech.com.techstile.fragment.OngoingOrderFragment;
-import ogmatech.com.techstile.fragment.QuickOrderFragment;
-import ogmatech.com.techstile.fragment.TaggingOrderFragment;
 import ogmatech.com.techstile.model.SearchString;
 
 public class OrderHistoryActivity extends BaseDrawerActivity {
@@ -102,11 +94,19 @@ public class OrderHistoryActivity extends BaseDrawerActivity {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
 
+            Bundle bundle = new Bundle();
+
             switch (position){
                 case 0:
-                    return new DeliveredOrderFragment();
+                    bundle.putString("orderFilter","deliveredOrder");
+                    AllOrderFragment deliveredOrderFragment = new AllOrderFragment();
+                    deliveredOrderFragment.setArguments(bundle);
+                    return deliveredOrderFragment;
                 case 1:
-                    return new CancelledOrderFragment();
+                    bundle.putString("orderFilter","cancelledOrder");
+                    AllOrderFragment cancelledOrderFragment = new AllOrderFragment();
+                    cancelledOrderFragment.setArguments(bundle);
+                    return cancelledOrderFragment;
                 default:
                     return OrderActivity.PlaceholderFragment.newInstance(position + 1);
             }

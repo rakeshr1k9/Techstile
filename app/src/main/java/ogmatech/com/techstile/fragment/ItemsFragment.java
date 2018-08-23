@@ -22,8 +22,9 @@ import ogmatech.com.techstile.adapter.ItemAdapter;
 import ogmatech.com.techstile.controller.NewOrderController;
 import ogmatech.com.techstile.model.Item;
 
-public class ItemsFragment extends Fragment implements ItemAdapter.ItemClickListener{
-    RecyclerView recyclerView;
+//public class ItemsFragment extends Fragment implements ItemAdapter.ItemClickListener{
+public class ItemsFragment{
+   /* RecyclerView recyclerView;
     ArrayList<Item> itemList = new ArrayList<>();
     ItemAdapter itemAdapter;
 
@@ -86,9 +87,9 @@ public class ItemsFragment extends Fragment implements ItemAdapter.ItemClickList
         return items;
     }
 
-    /**
+    *//**
      * RecyclerView item decoration - give equal margin around grid item
-     */
+     *//*
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 
         private int spanCount;
@@ -124,9 +125,9 @@ public class ItemsFragment extends Fragment implements ItemAdapter.ItemClickList
         }
     }
 
-    /**
+    *//**
      * Converting dp to pixel
-     */
+     *//*
     private int dpToPx(int dp) {
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
@@ -136,6 +137,6 @@ public class ItemsFragment extends Fragment implements ItemAdapter.ItemClickList
     public void onItemClicked(Item itemType) {
         NewOrderController.getInstance().clearInstance();
         Item item1 = new Item();
-      /*  item1.setItemTypeId(itemType.getId());*/
-    }
+      *//*  item1.setItemTypeId(itemType.getId());*//*
+    }*/
 }
