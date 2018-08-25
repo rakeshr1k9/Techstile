@@ -11,7 +11,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,10 +22,6 @@ import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
 
 import ogmatech.com.techstile.fragment.AllOrderFragment;
-import ogmatech.com.techstile.fragment.CompletedOrderFragment;
-import ogmatech.com.techstile.fragment.OngoingOrderFragment;
-import ogmatech.com.techstile.fragment.QuickOrderFragment;
-import ogmatech.com.techstile.fragment.TaggingOrderFragment;
 import ogmatech.com.techstile.model.SearchString;
 
 public class OrderActivity extends BaseDrawerActivity {
@@ -42,7 +37,7 @@ public class OrderActivity extends BaseDrawerActivity {
         View contentView = inflater.inflate(R.layout.activity_order, null, false);
         drawer.addView(contentView, 0);
 
-        // Create the adapter that will return a fragment for each of the three
+        // Create the adapter that will return a fragment for each of the Five
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.

@@ -9,6 +9,7 @@ public class LoginService{
     private static LoginApi getApi () {
         return new ApiClient.Builder()
                 .setAddBearerToken(false)
+               // .setBaseUrl("http://ogmaapi.ogmatech.in:80/")
                 .setBaseUrl("http://192.168.1.44:8090/")
                 .build()
                 .create(LoginApi.class);

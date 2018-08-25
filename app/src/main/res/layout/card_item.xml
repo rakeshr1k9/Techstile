@@ -10,6 +10,7 @@
         android:layout_gravity="center"
         android:layout_margin="@dimen/card_margin"
         android:elevation="3dp"
+        android:clickable="true"
         card_view:cardCornerRadius="@dimen/card_album_radius">
 
         <RelativeLayout
@@ -20,8 +21,8 @@
                 android:id="@+id/thumbnail"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/album_cover_height"
+                android:padding="8dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:clickable="true"
                 android:scaleType="fitXY" />
 
             <TextView
@@ -31,8 +32,11 @@
                 android:layout_below="@id/thumbnail"
                 android:paddingLeft="@dimen/album_title_padding"
                 android:paddingRight="@dimen/album_title_padding"
-                android:paddingTop="@dimen/album_title_padding"
+                android:paddingTop="4dp"
+                android:paddingBottom="@dimen/album_title_padding"
                 android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:textAlignment="center"
                 android:textSize="@dimen/album_title" />
 
 

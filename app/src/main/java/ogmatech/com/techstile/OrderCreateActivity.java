@@ -4,24 +4,18 @@ import android.app.SearchManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
 
-import ogmatech.com.techstile.R;
 import ogmatech.com.techstile.fragment.CartItemFragment;
-import ogmatech.com.techstile.fragment.ItemsFragment;
+import ogmatech.com.techstile.fragment.ItemTypeFragment;
 import ogmatech.com.techstile.model.SearchString;
 
 public class OrderCreateActivity extends BaseDrawerActivity implements CartItemFragment.OnItemAddListener {
@@ -86,7 +80,7 @@ public class OrderCreateActivity extends BaseDrawerActivity implements CartItemF
 
     @Override
     public void onAddItemClicked() {
-       // addFragment(ItemsFragment.newInstance(), "ItemFragment");
+       addFragment(new ItemTypeFragment(), "ItemTypeFragment");
 
     }
 

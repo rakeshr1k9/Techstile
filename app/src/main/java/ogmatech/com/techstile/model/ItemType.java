@@ -9,6 +9,8 @@ public class ItemType {
 
     private ItemCategory itemCategory;
 
+    private Integer itemCategoryId;
+
     public Integer getIdItemType() {
         return idItemType;
     }
@@ -47,5 +49,13 @@ public class ItemType {
 
     public void setItemCategory(ItemCategory itemCategory) {
         this.itemCategory = itemCategory;
+    }
+
+    public Integer getItemCategoryId() {
+        return itemCategoryId;
+    }
+
+    public void setItemCategoryId(Integer itemCategoryId) {
+        this.itemCategoryId = itemCategoryId;
     }
 }

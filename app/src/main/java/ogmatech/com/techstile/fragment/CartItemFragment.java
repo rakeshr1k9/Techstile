@@ -45,7 +45,7 @@ public class CartItemFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_cart_items, container, false);
 
            FloatingActionButton fab =  view.findViewById(R.id.floatingActionButtonAddItem);
-        fab.setOnClickListener(view1 -> onItemAddListener.onAddItemClicked());
+        fab.setOnClickListener((View view1) -> onItemAddListener.onAddItemClicked());
 
         Button cob = view.findViewById(R.id.buttonCheckout);
         cob.setOnClickListener(new View.OnClickListener() {

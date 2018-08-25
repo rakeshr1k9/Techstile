@@ -86,10 +86,7 @@ public class AllOrderFragment extends Fragment {
             default:
                 getAllOrderList();
                 break;
-
         }
-
-
 
         return view;
     }

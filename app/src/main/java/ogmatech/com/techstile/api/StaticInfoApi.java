@@ -19,40 +19,40 @@ import retrofit2.http.GET;
 
 public interface StaticInfoApi {
 
-    @GET("customerType")
+    @GET("admin/customer-type")
     Single<List<CustomerType>> getCustomerType();
 
-    @GET("dyeingColor")
+    @GET("admin/dyeing-color")
     Single<List<DyeingColor>> getDyeingColor();
 
-    @GET("extraService")
+    @GET("admin/extra-service")
     Single<List<ExtraService>> getExtraService();
 
-    @GET("itemCategory")
+    @GET("admin/item-category")
     Single<List<ItemCategory>> getItemCategory();
 
-    @GET("itemStatus")
+    @GET("admin/item-status")
     Single<List<ItemStatus>> getItemStatus();
 
-    @GET("itemType")
+    @GET("admin/item-type")
     Single<List<ItemType>> getItemType();
 
-    @GET("itemTypeServicePrice")
+    @GET("admin/item-type-service-price")
     Single<List<ItemTypeServicePrice>> getItemTypeServicePrice();
 
-    @GET("orderStatus")
+    @GET("admin/order-status")
     Single<List<OrderStatus>> getOrderStatus();
 
-    @GET("orderType")
+    @GET("admin/order-type")
     Single<List<OrderType>> getOrderType();
 
-    @GET("paymentType")
+    @GET("admin/payment-type")
     Single<List<PaymentType>> getPaymentType();
 
-    @GET("remark")
+    @GET("admin/remark")
     Single<List<Remark>> getRemark();
 
-    @GET("service")
+    @GET("admin/service")
     Single<List<Service>> getService();
 
 }
