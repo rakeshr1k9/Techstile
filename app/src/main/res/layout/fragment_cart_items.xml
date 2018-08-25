@@ -1,48 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ogmatech.com.techstile.fragment.ItemTypeFragment">
+    tools:context="ogmatech.com.techstile.fragment.CartItemFragment">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view_cart_item"
+    <LinearLayout
+        android:id="@+id/cart_item_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clipToPadding="false"
-        android:scrollbars="vertical"
-        app:layout_constraintStart_toStartOf="parent"/>
+        android:orientation="horizontal"
+        android:background="#0069c0">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButtonAddItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:src="@android:drawable/ic_input_add"
-        app:layout_constraintBottom_toTopOf="@id/buttonCheckout"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <TextView
+            android:id="@+id/txt_cart_total_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:layout_weight="1"
+            android:text="Items: 3"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"/>
+        <TextView
+            android:id="@+id/txt_cart_total_item_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:layout_weight="1"
+            android:text="Amount: 5364/-"
+            android:textStyle="bold"
+            android:textAlignment="textEnd"
+            android:textColor="@android:color/white"/>
 
-    <Button
-        android:id="@+id/buttonCheckout"
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/cart_item_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Checkout"
-        android:gravity="right"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_below="@id/cart_item_view"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/txtCartItemCount"
-        android:layout_width="wrap_content"
+        <include layout="@layout/card_cart_item"></include>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view_cart_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:scrollbars="vertical"/>
+
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/cart_bottom_buttons"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="left"
-        android:text="Total Items:25 | 2500/-"
-        app:layout_constraintBottom_toBottomOf="@id/buttonCheckout"
-        app:layout_constraintStart_toStartOf="@id/buttonCheckout"
-        app:layout_constraintTop_toTopOf="@id/buttonCheckout"/>
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:id="@+id/button_cart_add_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/primaryDarkColor"
+            android:text="Add Item"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"/>
+        <Button
+            android:id="@+id/button_cart_checkout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/primaryColor"
+            android:text="Checkout"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"/>
+    </LinearLayout>
 
 
 
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

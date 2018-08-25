@@ -14,8 +14,10 @@ import android.widget.Toast;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
 
+import ogmatech.com.techstile.adapter.ItemTypeAdapter;
 import ogmatech.com.techstile.fragment.CartItemFragment;
 import ogmatech.com.techstile.fragment.ItemTypeFragment;
+import ogmatech.com.techstile.model.ItemType;
 import ogmatech.com.techstile.model.SearchString;
 
 public class OrderCreateActivity extends BaseDrawerActivity implements CartItemFragment.OnItemAddListener {
@@ -88,4 +90,5 @@ public class OrderCreateActivity extends BaseDrawerActivity implements CartItemF
     public void onCheckoutClicked() {
         Toast.makeText(this,"COB clicked", Toast.LENGTH_SHORT).show();
     }
+
 }

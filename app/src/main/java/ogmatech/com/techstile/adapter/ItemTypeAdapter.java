@@ -34,7 +34,6 @@ public class ItemTypeAdapter extends RecyclerView.Adapter<ItemTypeAdapter.ItemTy
         void onItemTypeClicked(ItemType itemType);
     }
 
-
     private ItemTypeClickListener itemTypeClickListener;
 
     public ItemTypeAdapter(List<ItemType> itemTypes, ItemTypeClickListener itemTypeClickListener) {
@@ -62,6 +61,8 @@ public class ItemTypeAdapter extends RecyclerView.Adapter<ItemTypeAdapter.ItemTy
         View itemTypeView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.card_item, parent, false);
 
+
+
         return new ItemTypeViewHolder(itemTypeView);
     }
 
@@ -86,7 +87,9 @@ public class ItemTypeAdapter extends RecyclerView.Adapter<ItemTypeAdapter.ItemTy
         int imageResource = holder.itemView.getContext().getResources().getIdentifier(uri, null, holder.itemView.getContext().getPackageName());
         Drawable res = holder.itemView.getContext().getResources().getDrawable(imageResource);
         holder.thumbnail.setImageDrawable(res);
-        holder.cardView.setOnClickListener(v -> itemTypeClickListener.onItemTypeClicked(itemType));
+        holder.cardView.setOnClickListener((View v) -> {
+            itemTypeClickListener.onItemTypeClicked(itemType);
+        });
 
        /* String imgName;
         if(itemType.getItemTypeImageLink() == null) {

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/card_margin"
+        android:elevation="3dp"
+        app:cardUseCompatPadding="false"
+        card_view:cardCornerRadius="@dimen/card_album_radius">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/icon_cart_item_type"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxWidth="60dp"
+                android:maxHeight="60dp"
+                android:layout_centerInParent="true"
+                android:layout_margin="8dp"
+                android:padding="4dp"
+                android:adjustViewBounds="true"
+                app:srcCompat="@drawable/a101shirt"
+                android:layout_alignParentLeft="true"/>
+
+            <TextView
+                android:id="@+id/txt_item_type_name"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:padding="8dp"
+                android:text="Window Curtain (With Liner)"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"
+                android:layout_toLeftOf="@id/txt_item_service"
+                android:layout_toRightOf="@id/icon_cart_item_type"/>
+
+            <TextView
+                android:id="@+id/txt_item_service"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:padding="8dp"
+                android:layout_marginEnd="18dp"
+                android:layout_toLeftOf="@id/cart_item_info"
+                android:text="D\nd/r\nT\nc/r\nDye\nS "
+                android:lineSpacingExtra="1dp"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:id="@+id/cart_item_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_margin="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txt_cart_item_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="bottom"
+                    android:paddingBottom="2dp"
+                    android:text="20"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txt_cart_item_total_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="top"
+                    android:paddingTop="2dp"
+                    android:text="7955/-"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

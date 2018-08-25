@@ -44,11 +44,11 @@ public class CartItemFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cart_items, container, false);
 
-           FloatingActionButton fab =  view.findViewById(R.id.floatingActionButtonAddItem);
-        fab.setOnClickListener((View view1) -> onItemAddListener.onAddItemClicked());
+           Button addItem =  view.findViewById(R.id.button_cart_add_item);
+        addItem.setOnClickListener((View view1) -> onItemAddListener.onAddItemClicked());
 
-        Button cob = view.findViewById(R.id.buttonCheckout);
-        cob.setOnClickListener(new View.OnClickListener() {
+        Button checkout = view.findViewById(R.id.button_cart_checkout);
+        checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onItemAddListener.onCheckoutClicked();

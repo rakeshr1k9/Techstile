@@ -14,6 +14,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -143,6 +144,9 @@ public class AllItemTypeFragment extends Fragment implements ItemTypeAdapter.Ite
         }
     }
 
+
+
+
     /*
      * Converting dp to pixel
      */
@@ -151,12 +155,7 @@ public class AllItemTypeFragment extends Fragment implements ItemTypeAdapter.Ite
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
 
-    @Override
-    public void onItemTypeClicked(ItemType itemType) {
-        NewOrderController.getInstance().clearInstance();
-        Item item = new Item();
-        item.setItemType(itemType);
-    }
+
 
     private List<ItemType> getMenList() {
         List<ItemType> itemTypes = StaticInfoController.getInstance().getItemTypes();
@@ -205,6 +204,17 @@ public class AllItemTypeFragment extends Fragment implements ItemTypeAdapter.Ite
         Integer categoryId = 7;
         List<ItemType> filtered = itemTypes.stream().filter(itemType -> itemType.getItemCategoryId().equals(categoryId) ).collect(Collectors.toList());
         return filtered;
+    }
+
+
+
+
+    @Override
+    public void onItemTypeClicked(ItemType itemType) {
+        // NewOrderController.getInstance().clearInstance();
+
+        Item item = new Item();
+        item.setItemType(itemType);
     }
 
 }
