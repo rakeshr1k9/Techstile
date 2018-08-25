@@ -15,6 +15,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,12 +30,16 @@ import ogmatech.com.techstile.model.ItemType;
 public class ItemTypeAdapter extends RecyclerView.Adapter<ItemTypeAdapter.ItemTypeViewHolder>{
 
     private ArrayList<ItemType> itemTypes;
+    private ItemTypeClickListener itemTypeClickListener;
 
-    public interface ItemTypeClickListener {
-        void onItemTypeClicked(ItemType itemType);
+    public void setItemTypeClickListener(ItemTypeClickListener itemTypeClickListener) {
+        this.itemTypeClickListener = itemTypeClickListener;
     }
 
-    private ItemTypeClickListener itemTypeClickListener;
+    public interface ItemTypeClickListener {
+        void onItemTypeClicked(int position, ItemType itemType);
+    }
+
 
     public ItemTypeAdapter(List<ItemType> itemTypes, ItemTypeClickListener itemTypeClickListener) {
         this.itemTypes = new ArrayList<>();
@@ -57,11 +62,9 @@ public class ItemTypeAdapter extends RecyclerView.Adapter<ItemTypeAdapter.ItemTy
 
     @NonNull
     @Override
-    public ItemTypeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ItemTypeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemTypeView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.card_item, parent, false);
-
-
 
         return new ItemTypeViewHolder(itemTypeView);
     }
@@ -88,7 +91,7 @@ public class ItemTypeAdapter extends RecyclerView.Adapter<ItemTypeAdapter.ItemTy
         Drawable res = holder.itemView.getContext().getResources().getDrawable(imageResource);
         holder.thumbnail.setImageDrawable(res);
         holder.cardView.setOnClickListener((View v) -> {
-            itemTypeClickListener.onItemTypeClicked(itemType);
+            itemTypeClickListener.onItemTypeClicked(position,itemType);
         });
 
        /* String imgName;

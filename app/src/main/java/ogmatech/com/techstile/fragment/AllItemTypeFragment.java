@@ -56,31 +56,31 @@ public class AllItemTypeFragment extends Fragment implements ItemTypeAdapter.Ite
         switch (itemCategoryFilter) {
 
             case "Men":
-                itemTypeAdapter = new ItemTypeAdapter(getMenList(), this);
+                itemTypeAdapter = new ItemTypeAdapter(getMenList(),this);
                 break;
 
             case "Women":
-                itemTypeAdapter = new ItemTypeAdapter(getWomenList(), this);
+                itemTypeAdapter = new ItemTypeAdapter(getWomenList(),this);
                 break;
 
             case "Silk":
-                itemTypeAdapter = new ItemTypeAdapter(getSilkList(), this);
+                itemTypeAdapter = new ItemTypeAdapter(getSilkList(),this);
                 break;
 
             case "Woolen":
-                itemTypeAdapter = new ItemTypeAdapter(getWoolenList(), this);
+                itemTypeAdapter = new ItemTypeAdapter(getWoolenList(),this);
                 break;
 
             case "Household":
-                itemTypeAdapter = new ItemTypeAdapter(getHouseholdList(), this);
+                itemTypeAdapter = new ItemTypeAdapter(getHouseholdList(),this);
                 break;
 
             case "Accessories":
-                itemTypeAdapter = new ItemTypeAdapter(getAccessoriesList(), this);
+                itemTypeAdapter = new ItemTypeAdapter(getAccessoriesList(),this);
                 break;
 
             case "Kids":
-                itemTypeAdapter = new ItemTypeAdapter(getKidsList(), this);
+                itemTypeAdapter = new ItemTypeAdapter(getKidsList(),this);
                 break;
         }
 
@@ -208,13 +208,16 @@ public class AllItemTypeFragment extends Fragment implements ItemTypeAdapter.Ite
 
 
 
+    public void onItemTypeClicked(int position, ItemType itemType) {
+        Toast.makeText(getContext(),"position is"+position+"&"+itemType.getItemTypeName(), Toast.LENGTH_SHORT).show();
+    }
 
-    @Override
+   /* @Override
     public void onItemTypeClicked(ItemType itemType) {
         // NewOrderController.getInstance().clearInstance();
 
         Item item = new Item();
         item.setItemType(itemType);
-    }
+    }*/
 
 }

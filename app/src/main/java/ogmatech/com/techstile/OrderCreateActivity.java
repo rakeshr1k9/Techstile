@@ -15,6 +15,7 @@ import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
 
 import ogmatech.com.techstile.adapter.ItemTypeAdapter;
+import ogmatech.com.techstile.fragment.AllItemTypeFragment;
 import ogmatech.com.techstile.fragment.CartItemFragment;
 import ogmatech.com.techstile.fragment.ItemTypeFragment;
 import ogmatech.com.techstile.model.ItemType;
@@ -91,4 +92,8 @@ public class OrderCreateActivity extends BaseDrawerActivity implements CartItemF
         Toast.makeText(this,"COB clicked", Toast.LENGTH_SHORT).show();
     }
 
+   /* @Override
+    public void onItemTypeClicked(int position) {
+        Toast.makeText(this,"position is"+position, Toast.LENGTH_SHORT).show();
+    }*/
 }
