@@ -5,6 +5,8 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,11 +19,12 @@ import com.google.android.gms.vision.barcode.Barcode;
 import ogmatech.com.techstile.adapter.ItemTypeAdapter;
 import ogmatech.com.techstile.fragment.AllItemTypeFragment;
 import ogmatech.com.techstile.fragment.CartItemFragment;
+import ogmatech.com.techstile.fragment.ItemAddFragment;
 import ogmatech.com.techstile.fragment.ItemTypeFragment;
 import ogmatech.com.techstile.model.ItemType;
 import ogmatech.com.techstile.model.SearchString;
 
-public class OrderCreateActivity extends BaseDrawerActivity implements CartItemFragment.OnItemAddListener {
+public class OrderCreateActivity extends BaseDrawerActivity implements CartItemFragment.OnItemAddListener,ItemTypeAdapter.ItemTypeClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +90,25 @@ public class OrderCreateActivity extends BaseDrawerActivity implements CartItemF
 
     }
 
+    public void onItemTypeClicked(int position, ItemType itemType) {
+        Bundle bundle = new Bundle();
+        bundle.putString("itemTypeId",itemType.getIdItemType().toString());
+
+        Fragment itemAddFragment = new ItemAddFragment();
+        itemAddFragment.setArguments(bundle);
+        /*FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+
+
+        transaction.replace(R.id.fragment_holder, itemAddFragment);
+
+        transaction.commit();*/
+        addFragment(itemAddFragment, "ItemAddFragment");
+
+
+    }
+
+
     @Override
     public void onCheckoutClicked() {
         Toast.makeText(this,"COB clicked", Toast.LENGTH_SHORT).show();
@@ -96,4 +118,14 @@ public class OrderCreateActivity extends BaseDrawerActivity implements CartItemF
     public void onItemTypeClicked(int position) {
         Toast.makeText(this,"position is"+position, Toast.LENGTH_SHORT).show();
     }*/
+
+    @Override
+    public void onBackPressed() {
+        if (getTopFragment() instanceof ItemAddFragment) {
+            getSupportFragmentManager().popBackStack();
+            getSupportFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+        }
+    }
 }

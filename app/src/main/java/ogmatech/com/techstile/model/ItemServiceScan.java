@@ -8,6 +8,9 @@ public class ItemServiceScan {
     private Date itemServiceScanTime;
     private Byte isDeleted;
 
+    private Integer workerServiceId;
+    private Integer itemId;
+
     private WorkerService workerService;
     private Item item;
 
@@ -49,5 +52,21 @@ public class ItemServiceScan {
 
     public void setItem(Item item) {
         this.item = item;
+    }
+
+    public Integer getWorkerServiceId() {
+        return workerServiceId;
+    }
+
+    public void setWorkerServiceId(Integer workerServiceId) {
+        this.workerServiceId = workerServiceId;
+    }
+
+    public Integer getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(Integer itemId) {
+        this.itemId = itemId;
     }
 }

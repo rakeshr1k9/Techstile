@@ -1,5 +1,6 @@
 package ogmatech.com.techstile.adapter;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -90,8 +91,12 @@ public class ItemTypeAdapter extends RecyclerView.Adapter<ItemTypeAdapter.ItemTy
         int imageResource = holder.itemView.getContext().getResources().getIdentifier(uri, null, holder.itemView.getContext().getPackageName());
         Drawable res = holder.itemView.getContext().getResources().getDrawable(imageResource);
         holder.thumbnail.setImageDrawable(res);
-        holder.cardView.setOnClickListener((View v) -> {
-            itemTypeClickListener.onItemTypeClicked(position,itemType);
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                itemTypeClickListener.onItemTypeClicked(position, itemType);
+            }
         });
 
        /* String imgName;

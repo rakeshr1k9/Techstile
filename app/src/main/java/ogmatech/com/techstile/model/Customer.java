@@ -1,5 +1,7 @@
 package ogmatech.com.techstile.model;
 
+import java.util.List;
+
 public class Customer {
 
     private Integer idCustomer;
@@ -7,6 +9,9 @@ public class Customer {
     private String customerName;
     private Byte isDeleted;
     private String customerAddress;
+
+    private List<Order> orders;
+    private List<CustomerBranch> customerBranches;
 
     public Integer getIdCustomer() {
         return idCustomer;
@@ -46,5 +51,21 @@ public class Customer {
 
     public void setCustomerAddress(String customerAddress) {
         this.customerAddress = customerAddress;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public List<CustomerBranch> getCustomerBranches() {
+        return customerBranches;
+    }
+
+    public void setCustomerBranches(List<CustomerBranch> customerBranches) {
+        this.customerBranches = customerBranches;
     }
 }

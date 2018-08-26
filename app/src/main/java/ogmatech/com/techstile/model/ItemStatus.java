@@ -1,11 +1,15 @@
 package ogmatech.com.techstile.model;
 
+import java.util.List;
+
 public class ItemStatus {
 
     private Integer idItemStatus;
     private String itemStatusName;
     private Byte isDeleted;
     private Integer itemStatusOrder;
+
+    private List<Item> items;
 
     public Integer getIdItemStatus() {
         return idItemStatus;
@@ -37,5 +41,13 @@ public class ItemStatus {
 
     public void setItemStatusOrder(Integer itemStatusOrder) {
         this.itemStatusOrder = itemStatusOrder;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 }

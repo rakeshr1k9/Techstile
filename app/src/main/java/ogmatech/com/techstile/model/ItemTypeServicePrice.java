@@ -10,6 +10,10 @@ public class ItemTypeServicePrice {
     private Service service;
     private Branch branch;
 
+    private Integer itemTypeId;
+    private Integer serviceId;
+    private Integer branchId;
+
     public Integer getIdItemTypeServicePrice() {
         return idItemTypeServicePrice;
     }
@@ -56,5 +60,29 @@ public class ItemTypeServicePrice {
 
     public void setBranch(Branch branch) {
         this.branch = branch;
+    }
+
+    public Integer getItemTypeId() {
+        return itemTypeId;
+    }
+
+    public void setItemTypeId(Integer itemTypeId) {
+        this.itemTypeId = itemTypeId;
+    }
+
+    public Integer getServiceId() {
+        return serviceId;
+    }
+
+    public void setServiceId(Integer serviceId) {
+        this.serviceId = serviceId;
+    }
+
+    public Integer getBranchId() {
+        return branchId;
+    }
+
+    public void setBranchId(Integer branchId) {
+        this.branchId = branchId;
     }
 }

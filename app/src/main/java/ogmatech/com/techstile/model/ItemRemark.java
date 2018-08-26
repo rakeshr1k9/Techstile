@@ -6,6 +6,11 @@ public class ItemRemark {
     private Byte isDeleted;
     private String itemRemarkUpdatedByUser;
 
+    private Integer itemId;
+    private Integer remarkId;
+    private Integer orderId;
+    private Integer branchId;
+
     private Item item;
     private Remark remark;
     private Order order;
@@ -65,5 +70,37 @@ public class ItemRemark {
 
     public void setBranch(Branch branch) {
         this.branch = branch;
+    }
+
+    public Integer getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(Integer itemId) {
+        this.itemId = itemId;
+    }
+
+    public Integer getRemarkId() {
+        return remarkId;
+    }
+
+    public void setRemarkId(Integer remarkId) {
+        this.remarkId = remarkId;
+    }
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
+    }
+
+    public Integer getBranchId() {
+        return branchId;
+    }
+
+    public void setBranchId(Integer branchId) {
+        this.branchId = branchId;
     }
 }

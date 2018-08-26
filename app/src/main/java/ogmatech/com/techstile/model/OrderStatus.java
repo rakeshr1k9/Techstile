@@ -1,10 +1,14 @@
 package ogmatech.com.techstile.model;
 
+import java.util.List;
+
 public class OrderStatus {
     private Integer idOrderStatus;
     private String orderStatusName;
     private Byte isDeleted;
     private Integer orderStatusOrder;
+
+    private List<Order> orders;
 
     public Integer getIdOrderStatus() {
         return idOrderStatus;
@@ -36,5 +40,13 @@ public class OrderStatus {
 
     public void setOrderStatusOrder(Integer orderStatusOrder) {
         this.orderStatusOrder = orderStatusOrder;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }

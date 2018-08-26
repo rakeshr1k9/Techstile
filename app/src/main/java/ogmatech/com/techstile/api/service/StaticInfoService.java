@@ -5,6 +5,7 @@ import java.util.List;
 import io.reactivex.Single;
 import ogmatech.com.techstile.api.StaticInfoApi;
 import ogmatech.com.techstile.api.generic.ApiClient;
+import ogmatech.com.techstile.model.Branch;
 import ogmatech.com.techstile.model.CustomerType;
 import ogmatech.com.techstile.model.DyeingColor;
 import ogmatech.com.techstile.model.ExtraService;
@@ -17,6 +18,7 @@ import ogmatech.com.techstile.model.OrderType;
 import ogmatech.com.techstile.model.PaymentType;
 import ogmatech.com.techstile.model.Remark;
 import ogmatech.com.techstile.model.Service;
+import retrofit2.Call;
 
 public class StaticInfoService {
     private static StaticInfoApi getApi () {
@@ -69,6 +71,11 @@ public class StaticInfoService {
 
     public static Single<List<Service>> getService() {
         return getApi().getService();
+    }
+
+    public static Single<Branch> getBranch(){
+        Integer branchId = 1;
+        return getApi().getBranch(branchId);
     }
 
 }

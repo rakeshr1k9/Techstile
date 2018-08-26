@@ -9,6 +9,9 @@ public class TempOrder {
     private Date tempOrderReceivedAt;
     private Byte isDeleted;
 
+    private Integer orderId;
+    private Integer branchId;
+
     private Order order;
     private Branch branch;
 
@@ -58,5 +61,21 @@ public class TempOrder {
 
     public void setBranch(Branch branch) {
         this.branch = branch;
+    }
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
+    }
+
+    public Integer getBranchId() {
+        return branchId;
+    }
+
+    public void setBranchId(Integer branchId) {
+        this.branchId = branchId;
     }
 }

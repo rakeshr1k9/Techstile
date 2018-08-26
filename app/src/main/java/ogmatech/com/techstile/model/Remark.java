@@ -1,10 +1,17 @@
 package ogmatech.com.techstile.model;
 
+import java.util.List;
+
 public class Remark {
 
     private Integer idRemark;
     private String remarkName;
     private Byte isDeleted;
+
+    Payment payment;
+    int a = payment.getIdPayment();
+
+    private List<ItemRemark> itemRemarks;
 
     public Integer getIdRemark() {
         return idRemark;
@@ -28,5 +35,13 @@ public class Remark {
 
     public void setIsDeleted(Byte isDeleted) {
         this.isDeleted = isDeleted;
+    }
+
+    public List<ItemRemark> getItemRemarks() {
+        return itemRemarks;
+    }
+
+    public void setItemRemarks(List<ItemRemark> itemRemarks) {
+        this.itemRemarks = itemRemarks;
     }
 }

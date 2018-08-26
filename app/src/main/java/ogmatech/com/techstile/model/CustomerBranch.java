@@ -8,6 +8,10 @@ public class CustomerBranch {
     private Customer customer;
     private CustomerType customerType;
 
+    private Integer branchId;
+    private Integer customerId;
+    private Integer customerTypeId;
+
     public Integer getIdCustomerBranch() {
         return idCustomerBranch;
     }
@@ -38,5 +42,29 @@ public class CustomerBranch {
 
     public void setCustomerType(CustomerType customerType) {
         this.customerType = customerType;
+    }
+
+    public Integer getBranchId() {
+        return branchId;
+    }
+
+    public void setBranchId(Integer branchId) {
+        this.branchId = branchId;
+    }
+
+    public Integer getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
+    }
+
+    public Integer getCustomerTypeId() {
+        return customerTypeId;
+    }
+
+    public void setCustomerTypeId(Integer customerTypeId) {
+        this.customerTypeId = customerTypeId;
     }
 }

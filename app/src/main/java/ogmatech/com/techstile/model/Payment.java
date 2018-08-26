@@ -14,6 +14,14 @@ public class Payment {
     private PaymentType paymentType;
     private Branch branch;
 
+    private Integer orderId;
+    private Integer paymentTypeId;
+    private Integer branchId;
+
+    public Payment(){
+
+    }
+
     public Integer getIdPayment() {
         return idPayment;
     }
@@ -76,5 +84,29 @@ public class Payment {
 
     public void setBranch(Branch branch) {
         this.branch = branch;
+    }
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
+    }
+
+    public Integer getPaymentTypeId() {
+        return paymentTypeId;
+    }
+
+    public void setPaymentTypeId(Integer paymentTypeId) {
+        this.paymentTypeId = paymentTypeId;
+    }
+
+    public Integer getBranchId() {
+        return branchId;
+    }
+
+    public void setBranchId(Integer branchId) {
+        this.branchId = branchId;
     }
 }

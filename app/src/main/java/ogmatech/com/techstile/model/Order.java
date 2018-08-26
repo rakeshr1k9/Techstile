@@ -1,6 +1,7 @@
 package ogmatech.com.techstile.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Order {
 
@@ -32,6 +33,13 @@ public class Order {
     private Integer branchId;
     private Integer orderStatusId;
     private Integer OrderTypeId;
+
+    private List<Item> items;
+    private List<ItemRemark> itemRemarks;
+    private List<ItemExtraServicePrice> itemExtraServicePrices;
+    private List<ItemServicePrice> itemServicePrices;
+    private List<TempOrder> tempOrders;
+    private List<Payment> payments;
 
     public Integer getIdOrder() {
         return idOrder;
@@ -239,5 +247,53 @@ public class Order {
 
     public void setOrderTypeId(Integer orderTypeId) {
         OrderTypeId = orderTypeId;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
+    public List<ItemRemark> getItemRemarks() {
+        return itemRemarks;
+    }
+
+    public void setItemRemarks(List<ItemRemark> itemRemarks) {
+        this.itemRemarks = itemRemarks;
+    }
+
+    public List<ItemExtraServicePrice> getItemExtraServicePrices() {
+        return itemExtraServicePrices;
+    }
+
+    public void setItemExtraServicePrices(List<ItemExtraServicePrice> itemExtraServicePrices) {
+        this.itemExtraServicePrices = itemExtraServicePrices;
+    }
+
+    public List<ItemServicePrice> getItemServicePrices() {
+        return itemServicePrices;
+    }
+
+    public void setItemServicePrices(List<ItemServicePrice> itemServicePrices) {
+        this.itemServicePrices = itemServicePrices;
+    }
+
+    public List<TempOrder> getTempOrders() {
+        return tempOrders;
+    }
+
+    public void setTempOrders(List<TempOrder> tempOrders) {
+        this.tempOrders = tempOrders;
+    }
+
+    public List<Payment> getPayments() {
+        return payments;
+    }
+
+    public void setPayments(List<Payment> payments) {
+        this.payments = payments;
     }
 }

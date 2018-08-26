@@ -1,6 +1,7 @@
 package ogmatech.com.techstile.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Item {
 
@@ -16,10 +17,21 @@ public class Item {
     private Byte isDeleted;
     private String itemUpdatedByUser;
 
+    private Integer orderId;
+    private Integer itemTypeId;
+    private Integer itemStatusId;
+    private Integer branchId;
+
     private Order order;
     private ItemType itemType;
     private ItemStatus itemStatus;
     private Branch branch;
+
+    private List<ItemServiceScan> itemServiceScans;
+    private List<ItemRemark> itemRemarks;
+    private List<ItemExtraServicePrice> itemExtraServicePrices;
+    private List<ItemDyeingColor> itemDyeingColors;
+    private List<ItemServicePrice> itemServicePrices;
 
     public Integer getIdItem() {
         return idItem;
@@ -115,5 +127,77 @@ public class Item {
 
     public void setBranch(Branch branch) {
         this.branch = branch;
+    }
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
+    }
+
+    public Integer getItemTypeId() {
+        return itemTypeId;
+    }
+
+    public void setItemTypeId(Integer itemTypeId) {
+        this.itemTypeId = itemTypeId;
+    }
+
+    public Integer getItemStatusId() {
+        return itemStatusId;
+    }
+
+    public void setItemStatusId(Integer itemStatusId) {
+        this.itemStatusId = itemStatusId;
+    }
+
+    public Integer getBranchId() {
+        return branchId;
+    }
+
+    public void setBranchId(Integer branchId) {
+        this.branchId = branchId;
+    }
+
+    public List<ItemServiceScan> getItemServiceScans() {
+        return itemServiceScans;
+    }
+
+    public void setItemServiceScans(List<ItemServiceScan> itemServiceScans) {
+        this.itemServiceScans = itemServiceScans;
+    }
+
+    public List<ItemRemark> getItemRemarks() {
+        return itemRemarks;
+    }
+
+    public void setItemRemarks(List<ItemRemark> itemRemarks) {
+        this.itemRemarks = itemRemarks;
+    }
+
+    public List<ItemExtraServicePrice> getItemExtraServicePrices() {
+        return itemExtraServicePrices;
+    }
+
+    public void setItemExtraServicePrices(List<ItemExtraServicePrice> itemExtraServicePrices) {
+        this.itemExtraServicePrices = itemExtraServicePrices;
+    }
+
+    public List<ItemDyeingColor> getItemDyeingColors() {
+        return itemDyeingColors;
+    }
+
+    public void setItemDyeingColors(List<ItemDyeingColor> itemDyeingColors) {
+        this.itemDyeingColors = itemDyeingColors;
+    }
+
+    public List<ItemServicePrice> getItemServicePrices() {
+        return itemServicePrices;
+    }
+
+    public void setItemServicePrices(List<ItemServicePrice> itemServicePrices) {
+        this.itemServicePrices = itemServicePrices;
     }
 }

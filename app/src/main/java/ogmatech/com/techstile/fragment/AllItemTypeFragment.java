@@ -7,9 +7,11 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import io.reactivex.Observable;
+import io.reactivex.Single;
 import ogmatech.com.techstile.R;
 import ogmatech.com.techstile.adapter.ItemTypeAdapter;
 import ogmatech.com.techstile.controller.NewOrderController;
@@ -28,7 +32,7 @@ import ogmatech.com.techstile.controller.StaticInfoController;
 import ogmatech.com.techstile.model.Item;
 import ogmatech.com.techstile.model.ItemType;
 
-public class AllItemTypeFragment extends Fragment implements ItemTypeAdapter.ItemTypeClickListener{
+public class AllItemTypeFragment extends Fragment {
 
     RecyclerView recyclerView;
     ItemTypeAdapter itemTypeAdapter;
@@ -56,31 +60,31 @@ public class AllItemTypeFragment extends Fragment implements ItemTypeAdapter.Ite
         switch (itemCategoryFilter) {
 
             case "Men":
-                itemTypeAdapter = new ItemTypeAdapter(getMenList(),this);
+                itemTypeAdapter = new ItemTypeAdapter(getMenList(),(ItemTypeAdapter.ItemTypeClickListener) getActivity());
                 break;
 
             case "Women":
-                itemTypeAdapter = new ItemTypeAdapter(getWomenList(),this);
+                itemTypeAdapter = new ItemTypeAdapter(getWomenList(),(ItemTypeAdapter.ItemTypeClickListener) getActivity());
                 break;
 
             case "Silk":
-                itemTypeAdapter = new ItemTypeAdapter(getSilkList(),this);
+                itemTypeAdapter = new ItemTypeAdapter(getSilkList(),(ItemTypeAdapter.ItemTypeClickListener) getActivity());
                 break;
 
             case "Woolen":
-                itemTypeAdapter = new ItemTypeAdapter(getWoolenList(),this);
+                itemTypeAdapter = new ItemTypeAdapter(getWoolenList(),(ItemTypeAdapter.ItemTypeClickListener) getActivity());
                 break;
 
             case "Household":
-                itemTypeAdapter = new ItemTypeAdapter(getHouseholdList(),this);
+                itemTypeAdapter = new ItemTypeAdapter(getHouseholdList(),(ItemTypeAdapter.ItemTypeClickListener) getActivity());
                 break;
 
             case "Accessories":
-                itemTypeAdapter = new ItemTypeAdapter(getAccessoriesList(),this);
+                itemTypeAdapter = new ItemTypeAdapter(getAccessoriesList(),(ItemTypeAdapter.ItemTypeClickListener) getActivity());
                 break;
 
             case "Kids":
-                itemTypeAdapter = new ItemTypeAdapter(getKidsList(),this);
+                itemTypeAdapter = new ItemTypeAdapter(getKidsList(),(ItemTypeAdapter.ItemTypeClickListener) getActivity());
                 break;
         }
 
@@ -174,7 +178,17 @@ public class AllItemTypeFragment extends Fragment implements ItemTypeAdapter.Ite
     private List<ItemType> getSilkList() {
         List<ItemType> itemTypes = StaticInfoController.getInstance().getItemTypes();
         Integer categoryId = 3;
-        List<ItemType> filtered = itemTypes.stream().filter(itemType -> itemType.getItemCategoryId().equals(categoryId) ).collect(Collectors.toList());
+        List<ItemType> filtered = new ArrayList<>();
+        Observable
+                .fromIterable(itemTypes)
+                .filter(itemType -> {
+                    return itemType.getItemCategoryId().equals(categoryId);
+                })
+                .toList()
+                .subscribe(itemTypes1 -> {
+                    filtered.addAll(itemTypes1);
+                });
+       // List<ItemType> filtered = itemTypes.stream().filter(itemType -> itemType.getItemCategoryId().equals(categoryId) ).collect(Collectors.toList());
         return filtered;
     }
 
@@ -208,9 +222,21 @@ public class AllItemTypeFragment extends Fragment implements ItemTypeAdapter.Ite
 
 
 
-    public void onItemTypeClicked(int position, ItemType itemType) {
-        Toast.makeText(getContext(),"position is"+position+"&"+itemType.getItemTypeName(), Toast.LENGTH_SHORT).show();
-    }
+   /* public void onItemTypeClicked(int position, ItemType itemType) {
+        Bundle bundle = new Bundle();
+        bundle.putString("itemTypeId",itemType.getIdItemType().toString());
+
+        Fragment itemAddFragment = new ItemAddFragment();
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+
+        itemAddFragment.setArguments(bundle);
+
+        transaction.replace(R.id.fragment_holder, itemAddFragment);
+
+        transaction.commit();
+
+
+    }*/
 
    /* @Override
     public void onItemTypeClicked(ItemType itemType) {

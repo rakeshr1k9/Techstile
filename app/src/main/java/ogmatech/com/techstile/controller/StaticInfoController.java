@@ -9,6 +9,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 import ogmatech.com.techstile.api.service.StaticInfoService;
+import ogmatech.com.techstile.model.Branch;
 import ogmatech.com.techstile.model.CustomerType;
 import ogmatech.com.techstile.model.DyeingColor;
 import ogmatech.com.techstile.model.ExtraService;
@@ -37,6 +38,7 @@ public class StaticInfoController {
     private List<PaymentType>paymentTypes  = new ArrayList<>();
     private List<Remark> remarks = new ArrayList<>();
     private List<Service> services = new ArrayList<>();
+    private Branch branch = new Branch();
 
     public static StaticInfoController getInstance() {
         if (staticInfoController == null) {
@@ -149,6 +151,14 @@ public class StaticInfoController {
         this.services = services;
     }
 
+    public Branch getBranch() {
+        return branch;
+    }
+
+    public void setBranch(Branch branch) {
+        this.branch = branch;
+    }
+
     public void clearInstance() {
         staticInfoController = null;
     }
@@ -245,7 +255,12 @@ public class StaticInfoController {
                             Log.d("StatisInfooController", "loadStaticInfo: ");},
                         throwable -> Log.d("StatisInfooController", "loadStaticInfo: "));
 
-
+        StaticInfoService.getBranch()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(t -> {staticInfoController.setBranch(t);
+                            Log.d("StatisInfooController", "loadStaticInfo: ");},
+                        throwable -> Log.d("StatisInfooController", "loadStaticInfo: "));
     }
 
 }

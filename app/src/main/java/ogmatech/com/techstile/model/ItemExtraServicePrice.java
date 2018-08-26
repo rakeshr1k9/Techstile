@@ -8,6 +8,10 @@ public class ItemExtraServicePrice {
     private String itemExtraServicePriceCreatedByUser;
     private String itemExtraServicePriceUpdatedByUser;
 
+    private Integer extraServiceId;
+    private Integer itemId;
+    private Integer orderId;
+
     private ExtraService extraService;
     private Item item;
     private Order order;
@@ -74,5 +78,29 @@ public class ItemExtraServicePrice {
 
     public void setOrder(Order order) {
         this.order = order;
+    }
+
+    public Integer getExtraServiceId() {
+        return extraServiceId;
+    }
+
+    public void setExtraServiceId(Integer extraServiceId) {
+        this.extraServiceId = extraServiceId;
+    }
+
+    public Integer getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(Integer itemId) {
+        this.itemId = itemId;
+    }
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 }

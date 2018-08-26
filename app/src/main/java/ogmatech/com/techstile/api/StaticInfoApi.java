@@ -3,6 +3,7 @@ package ogmatech.com.techstile.api;
 import java.util.List;
 
 import io.reactivex.Single;
+import ogmatech.com.techstile.model.Branch;
 import ogmatech.com.techstile.model.CustomerType;
 import ogmatech.com.techstile.model.DyeingColor;
 import ogmatech.com.techstile.model.ExtraService;
@@ -15,7 +16,9 @@ import ogmatech.com.techstile.model.OrderType;
 import ogmatech.com.techstile.model.PaymentType;
 import ogmatech.com.techstile.model.Remark;
 import ogmatech.com.techstile.model.Service;
+import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 public interface StaticInfoApi {
 
@@ -54,5 +57,8 @@ public interface StaticInfoApi {
 
     @GET("admin/service")
     Single<List<Service>> getService();
+
+    @GET("admin/branch/{id}")
+    Single<Branch> getBranch(@Path("id") Integer id);
 
 }

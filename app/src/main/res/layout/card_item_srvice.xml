@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/card_margin"
+        android:elevation="3dp"
+        app:cardUseCompatPadding="false"
+        card_view:cardCornerRadius="@dimen/card_album_radius">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/item_count_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="4dp"
+                android:padding="4dp"
+                android:text="14"
+                android:textSize="14sp"
+                android:layout_alignParentLeft="true"/>
+
+            <Button
+                android:id="@+id/btn_item_service_add"
+                android:layout_width="match_parent"
+                android:textAlignment="center"
+                android:layout_height="30dp"
+                android:layout_toEndOf="@id/item_count_number"
+                android:layout_toStartOf="@id/txt_item_total"
+                android:layout_alignParentTop="true"
+                android:padding="0dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
+                android:text="Add Services"
+                android:textSize="10sp"
+                android:textColor="@android:color/holo_red_light"/>
+
+            <Button
+                android:id="@+id/btn_item_extra_service_add"
+                android:layout_width="match_parent"
+                android:textAlignment="center"
+                android:layout_height="30dp"
+                android:layout_toEndOf="@id/item_count_number"
+                android:layout_toStartOf="@id/txt_item_total"
+                android:layout_below="@id/btn_item_service_add"
+                android:padding="0dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginLeft="24dp"
+                android:text="Add Extra Services"
+                android:textSize="10sp"
+                android:textColor="@android:color/white"/>
+
+            <android.support.v7.widget.CardView
+                android:visibility="gone"
+                android:id="@+id/card_view_item_service"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_toEndOf="@id/item_count_number"
+                android:layout_toStartOf="@id/txt_item_total"
+                android:layout_alignParentTop="true">
+                <ListView
+                    android:id="@+id/list_view_item_service"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </ListView>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:visibility="gone"
+                android:id="@+id/card_view_item_extra_service"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginLeft="24dp"
+                android:layout_toEndOf="@id/item_count_number"
+                android:layout_toStartOf="@id/txt_item_total"
+                android:layout_below="@id/card_view_item_service">
+                <ListView
+                    android:id="@+id/list_view_extra_service"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </ListView>
+
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:id="@+id/txt_item_total"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:padding="4dp"
+                android:layout_toLeftOf="@id/btn_item_delete"
+                android:text="1200"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/btn_item_delete"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:src="@drawable/ic_close_black"/>
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -88,6 +89,13 @@ public class BaseDrawerActivity extends AppCompatActivity implements NavigationV
                 .add(R.id.fragment_holder, fragment, tag)
                 .addToBackStack(tag)
                 .commit();
+    }
+
+    public Fragment getTopFragment() {
+        int index = getSupportFragmentManager().getBackStackEntryCount() - 1;
+        FragmentManager.BackStackEntry backEntry = getSupportFragmentManager().getBackStackEntryAt(index);
+        String tag = backEntry.getName();
+        return getSupportFragmentManager().findFragmentByTag(tag);
     }
 
 }

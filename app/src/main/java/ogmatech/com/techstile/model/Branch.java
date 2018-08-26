@@ -1,5 +1,7 @@
 package ogmatech.com.techstile.model;
 
+import java.util.List;
+
 public class Branch {
 
     private Integer idBranch;
@@ -16,6 +18,16 @@ public class Branch {
     private String branchTagline;
     private Long branchPhone2;
     private Long branchPhone3;
+
+    private List<User> users;
+    private List<CustomerBranch> customerBranches;
+    private List<Order> orders;
+    private List<Item> items;
+    private List<ItemRemark> itemRemarks;
+    private List<Payment> payments;
+    private List<TempOrder> tempOrders;
+    private List<ItemServicePrice> itemServicePrices;
+    private List<ItemTypeServicePrice> itemTypeServicePrices;
 
     public Integer getIdBranch() {
         return idBranch;
@@ -127,5 +139,77 @@ public class Branch {
 
     public void setBranchPhone3(Long branchPhone3) {
         this.branchPhone3 = branchPhone3;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public List<CustomerBranch> getCustomerBranches() {
+        return customerBranches;
+    }
+
+    public void setCustomerBranches(List<CustomerBranch> customerBranches) {
+        this.customerBranches = customerBranches;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
+    public List<ItemRemark> getItemRemarks() {
+        return itemRemarks;
+    }
+
+    public void setItemRemarks(List<ItemRemark> itemRemarks) {
+        this.itemRemarks = itemRemarks;
+    }
+
+    public List<Payment> getPayments() {
+        return payments;
+    }
+
+    public void setPayments(List<Payment> payments) {
+        this.payments = payments;
+    }
+
+    public List<TempOrder> getTempOrders() {
+        return tempOrders;
+    }
+
+    public void setTempOrders(List<TempOrder> tempOrders) {
+        this.tempOrders = tempOrders;
+    }
+
+    public List<ItemServicePrice> getItemServicePrices() {
+        return itemServicePrices;
+    }
+
+    public void setItemServicePrices(List<ItemServicePrice> itemServicePrices) {
+        this.itemServicePrices = itemServicePrices;
+    }
+
+    public List<ItemTypeServicePrice> getItemTypeServicePrices() {
+        return itemTypeServicePrices;
+    }
+
+    public void setItemTypeServicePrices(List<ItemTypeServicePrice> itemTypeServicePrices) {
+        this.itemTypeServicePrices = itemTypeServicePrices;
     }
 }
