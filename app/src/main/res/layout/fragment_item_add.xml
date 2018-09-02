@@ -111,7 +111,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/cart_item_view"
         android:clipToPadding="false"
-        android:scrollbars="vertical" />
+        android:scrollbars="vertical"
+        app:reverseLayout="true"/>
 
     <Button
         android:id="@+id/btn_item_add_to_cart"

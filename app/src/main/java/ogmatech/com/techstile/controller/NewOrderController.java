@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ogmatech.com.techstile.model.Item;
+import ogmatech.com.techstile.model.Order;
 
 public class NewOrderController {
     private static NewOrderController newOrderController;
-    private List<Item> items = new ArrayList<>();
+    private Order order;
 
     public static NewOrderController getInstance() {
         if (newOrderController == null) {
@@ -16,8 +17,20 @@ public class NewOrderController {
         return newOrderController;
     }
 
-    public List<Item> getItems() {
-        return items;
+    public static NewOrderController getNewOrderController() {
+        return newOrderController;
+    }
+
+    public static void setNewOrderController(NewOrderController newOrderController) {
+        NewOrderController.newOrderController = newOrderController;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public void clearInstance() {

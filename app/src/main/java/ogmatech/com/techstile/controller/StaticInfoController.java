@@ -22,6 +22,7 @@ import ogmatech.com.techstile.model.OrderType;
 import ogmatech.com.techstile.model.PaymentType;
 import ogmatech.com.techstile.model.Remark;
 import ogmatech.com.techstile.model.Service;
+import ogmatech.com.techstile.wrapper.UserInitializerWrapper;
 
 public class StaticInfoController {
 
@@ -53,6 +54,10 @@ public class StaticInfoController {
 
     public static void setStaticInfoController(StaticInfoController staticInfoController) {
         StaticInfoController.staticInfoController = staticInfoController;
+    }
+
+    public void clearInstance() {
+        staticInfoController = null;
     }
 
     public List<CustomerType> getCustomerTypes() {
@@ -159,108 +164,28 @@ public class StaticInfoController {
         this.branch = branch;
     }
 
-    public void clearInstance() {
-        staticInfoController = null;
-    }
-
     public void loadStaticInfo(){
-        StaticInfoService.getCustomerType()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(t -> {staticInfoController.setCustomerTypes(t);
-                            Log.d("StatisInfooController", "loadStaticInfo: ");},
-                throwable -> Log.d("StatisInfooController", "loadStaticInfo: "));
 
-        StaticInfoService.getDyeingColor()
+        StaticInfoService.getUserInitializerWrapper()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(t -> {staticInfoController.setDyeingColors(t);
+                .subscribe(t -> {
+                    staticInfoController.setBranch(t.getBranch());
+                    staticInfoController.setServices(t.getServices());
+                    staticInfoController.setRemarks(t.getRemarks());
+                    staticInfoController.setOrderStatuses(t.getOrderStatuses());
+                    staticInfoController.setItemStatuses(t.getItemStatuses());
+                    staticInfoController.setCustomerTypes(t.getCustomerTypes());
+                    staticInfoController.setDyeingColors(t.getDyeingColors());
+                    staticInfoController.setExtraServices(t.getExtraServices());
+                    staticInfoController.setItemCategories(t.getItemCategories());
+                    staticInfoController.setItemTypes(t.getItemTypes());
+                    staticInfoController.setItemTypeServicePrices(t.getItemTypeServicePrices());
+                    staticInfoController.setOrderTypes(t.getOrderTypes());
+                    staticInfoController.setPaymentTypes(t.getPaymentTypes());
                             Log.d("StatisInfooController", "loadStaticInfo: ");},
                         throwable -> Log.d("StatisInfooController", "loadStaticInfo: "));
 
-        StaticInfoService.getExtraService()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(t -> {staticInfoController.setExtraServices(t);
-                            Log.d("StatisInfooController", "loadStaticInfo: ");},
-                        throwable -> Log.d("StatisInfooController", "loadStaticInfo: "));
-
-        StaticInfoService.getItemCategory()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(t -> {staticInfoController.setItemCategories(t);
-                            Log.d("StatisInfooController", "loadStaticInfo: ");},
-                        throwable -> Log.d("StatisInfooController", "loadStaticInfo: "));
-
-        StaticInfoService.getItemCategory()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(t -> {staticInfoController.setItemCategories(t);
-                            Log.d("StatisInfooController", "loadStaticInfo: ");},
-                        throwable -> Log.d("StatisInfooController", "loadStaticInfo: "));
-
-        StaticInfoService.getItemStatus()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(t -> {staticInfoController.setItemStatuses(t);
-                            Log.d("StatisInfooController", "loadStaticInfo: ");},
-                        throwable -> Log.d("StatisInfooController", "loadStaticInfo: "));
-
-        StaticInfoService.getItemType()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(t -> {staticInfoController.setItemTypes(t);
-                            Log.d("StatisInfooController", "loadStaticInfo: ");},
-                        throwable -> Log.d("StatisInfooController", "loadStaticInfo: "));
-
-        StaticInfoService.getItemTypeServicePrice()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(t -> {staticInfoController.setItemTypeServicePrices(t);
-                            Log.d("StatisInfooController", "loadStaticInfo: ");},
-                        throwable -> Log.d("StatisInfooController", "loadStaticInfo: "));
-
-        StaticInfoService.getOrderStatus()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(t -> {staticInfoController.setOrderStatuses(t);
-                            Log.d("StatisInfooController", "loadStaticInfo: ");},
-                        throwable -> Log.d("StatisInfooController", "loadStaticInfo: "));
-
-        StaticInfoService.getOrderType()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(t -> {staticInfoController.setOrderTypes(t);
-                            Log.d("StatisInfooController", "loadStaticInfo: ");},
-                        throwable -> Log.d("StatisInfooController", "loadStaticInfo: "));
-
-        StaticInfoService.getPaymentType()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(t -> {staticInfoController.setPaymentTypes(t);
-                            Log.d("StatisInfooController", "loadStaticInfo: ");},
-                        throwable -> Log.d("StatisInfooController", "loadStaticInfo: "));
-
-        StaticInfoService.getRemark()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(t -> {staticInfoController.setRemarks(t);
-                            Log.d("StatisInfooController", "loadStaticInfo: ");},
-                        throwable -> Log.d("StatisInfooController", "loadStaticInfo: "));
-
-        StaticInfoService.getService()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(t -> {staticInfoController.setServices(t);
-                            Log.d("StatisInfooController", "loadStaticInfo: ");},
-                        throwable -> Log.d("StatisInfooController", "loadStaticInfo: "));
-
-        StaticInfoService.getBranch()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(t -> {staticInfoController.setBranch(t);
-                            Log.d("StatisInfooController", "loadStaticInfo: ");},
-                        throwable -> Log.d("StatisInfooController", "loadStaticInfo: "));
     }
 
 }

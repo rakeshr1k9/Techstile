@@ -24,7 +24,7 @@ import ogmatech.com.techstile.fragment.ItemTypeFragment;
 import ogmatech.com.techstile.model.ItemType;
 import ogmatech.com.techstile.model.SearchString;
 
-public class OrderCreateActivity extends BaseDrawerActivity implements CartItemFragment.OnItemAddListener,ItemTypeAdapter.ItemTypeClickListener {
+public class OrderCreateActivity extends BaseDrawerActivity implements CartItemFragment.OnItemAddListener,ItemTypeAdapter.ItemTypeClickListener, ItemAddFragment.OnClickButtonListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +87,21 @@ public class OrderCreateActivity extends BaseDrawerActivity implements CartItemF
     @Override
     public void onAddItemClicked() {
        addFragment(new ItemTypeFragment(), "ItemTypeFragment");
+
+    }
+
+    @Override
+    public void onAddItemServiceClicked() {
+
+    }
+
+    @Override
+    public void onClearItemsClicked() {
+
+    }
+
+    @Override
+    public void onAddToCartClicked() {
 
     }
 

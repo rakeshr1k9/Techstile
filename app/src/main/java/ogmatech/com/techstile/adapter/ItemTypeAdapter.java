@@ -31,16 +31,16 @@ import ogmatech.com.techstile.model.ItemType;
 public class ItemTypeAdapter extends RecyclerView.Adapter<ItemTypeAdapter.ItemTypeViewHolder>{
 
     private ArrayList<ItemType> itemTypes;
-    private ItemTypeClickListener itemTypeClickListener;
-
-    public void setItemTypeClickListener(ItemTypeClickListener itemTypeClickListener) {
-        this.itemTypeClickListener = itemTypeClickListener;
-    }
 
     public interface ItemTypeClickListener {
         void onItemTypeClicked(int position, ItemType itemType);
     }
 
+    private ItemTypeClickListener itemTypeClickListener;
+
+    public void setItemTypeClickListener(ItemTypeClickListener itemTypeClickListener) {
+        this.itemTypeClickListener = itemTypeClickListener;
+    }
 
     public ItemTypeAdapter(List<ItemType> itemTypes, ItemTypeClickListener itemTypeClickListener) {
         this.itemTypes = new ArrayList<>();
@@ -91,13 +91,7 @@ public class ItemTypeAdapter extends RecyclerView.Adapter<ItemTypeAdapter.ItemTy
         int imageResource = holder.itemView.getContext().getResources().getIdentifier(uri, null, holder.itemView.getContext().getPackageName());
         Drawable res = holder.itemView.getContext().getResources().getDrawable(imageResource);
         holder.thumbnail.setImageDrawable(res);
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                itemTypeClickListener.onItemTypeClicked(position, itemType);
-            }
-        });
+        holder.cardView.setOnClickListener(v -> itemTypeClickListener.onItemTypeClicked(position, itemType));
 
        /* String imgName;
         if(itemType.getItemTypeImageLink() == null) {

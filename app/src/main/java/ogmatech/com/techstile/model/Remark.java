@@ -8,9 +8,6 @@ public class Remark {
     private String remarkName;
     private Byte isDeleted;
 
-    Payment payment;
-    int a = payment.getIdPayment();
-
     private List<ItemRemark> itemRemarks;
 
     public Integer getIdRemark() {

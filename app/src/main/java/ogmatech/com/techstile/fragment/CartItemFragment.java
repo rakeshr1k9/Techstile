@@ -42,16 +42,11 @@ public class CartItemFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cart_items, container, false);
 
-           Button addItem =  view.findViewById(R.id.button_cart_add_item);
+        Button addItem =  view.findViewById(R.id.button_cart_add_item);
         addItem.setOnClickListener((View view1) -> onItemAddListener.onAddItemClicked());
 
         Button checkout = view.findViewById(R.id.button_cart_checkout);
-        checkout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onItemAddListener.onCheckoutClicked();
-            }
-        });
+        checkout.setOnClickListener(v -> onItemAddListener.onCheckoutClicked());
 
         return view;
     }
