@@ -1,5 +1,6 @@
 package ogmatech.com.techstile.adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -24,16 +25,13 @@ public class ItemServiceAdapter extends RecyclerView.Adapter<ItemServiceAdapter.
     private ItemType itemType;
     private ArrayList<Item> items;
     private ArrayList<ItemServicePrice> itemServicePrices;
-    private ArrayList<ItemExtraServicePrice> itemExtraServicePrices;
 
     ItemServiceAdapter(ItemType itemType){
         this.itemType = itemType;
-
     }
 
     public interface OnServiceAddListener{
         void onItemServiceAddClicked(int position, Item item);
-        void onItemExtraServiceAddClicked(int position, Item item);
     }
 
     private OnServiceAddListener onServiceAddListener;
@@ -44,30 +42,22 @@ public class ItemServiceAdapter extends RecyclerView.Adapter<ItemServiceAdapter.
 
     class ItemServiceViewHolder extends RecyclerView.ViewHolder{
 
-        TextView itemCountNumber;
         TextView itemTotal;
-        Button itemServiceAdd;
-        Button itemExtraServiceAdd;
         ImageView itemDelete;
-        ListView listViewItemService;
-        ListView listViewExtraService;
 
         public ItemServiceViewHolder(View itemView) {
             super(itemView);
-            itemCountNumber = itemView.findViewById(R.id.item_count_number);
             itemTotal = itemView.findViewById(R.id.txt_item_total);
-            itemServiceAdd = itemView.findViewById(R.id.btn_item_service_add);
-            itemExtraServiceAdd = itemView.findViewById(R.id.btn_item_extra_service_add);
             itemDelete = itemView.findViewById(R.id.btn_item_delete);
-            listViewItemService = itemView.findViewById(R.id.list_view_item_service);
-            listViewExtraService = itemView.findViewById(R.id.list_view_extra_service);
         }
     }
 
     @NonNull
     @Override
     public ItemServiceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemServiceView = LayoutInflater.from(parent.getContext())
+
+        Context context = parent.getContext();
+        View itemServiceView = LayoutInflater.from(context)
                 .inflate(R.layout.card_item_srvice, parent, false);
 
         return new ItemServiceViewHolder(itemServiceView);
@@ -81,8 +71,7 @@ public class ItemServiceAdapter extends RecyclerView.Adapter<ItemServiceAdapter.
         holder.itemCountNumber.setText(position);
         holder.itemDelete.setImageResource(R.drawable.ic_close_black);
         holder.itemTotal.setText(item.getItemTotalAmount());
-        holder.itemServiceAdd.setOnClickListener(v -> onServiceAddListener.onItemServiceAddClicked(position, item));
-        holder.itemExtraServiceAdd.setOnClickListener(v -> onServiceAddListener.onItemExtraServiceAddClicked(position, item));*/
+        holder.itemServiceAdd.setOnClickListener(v -> onServiceAddListener.onItemServiceAddClicked(position, item));*/
 
     }
 

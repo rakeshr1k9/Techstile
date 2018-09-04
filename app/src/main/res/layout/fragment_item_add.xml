@@ -67,40 +67,52 @@
         android:background="#0069c0">
 
         <TextView
-            android:id="@+id/txt_item_total_price"
-            android:layout_width="match_parent"
+            android:id="@+id/txt_item_count"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_alignParentStart="true"
+            android:layout_toLeftOf="@id/txt_divider"
             android:layout_marginLeft="8dp"
             android:padding="8dp"
-            android:text="Amount: 5364/-"
+            android:text="100 items"
             android:textStyle="bold"
             android:textColor="@android:color/white"/>
 
         <TextView
-            android:id="@+id/txt_item_count"
+            android:id="@+id/txt_divider"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/btn_increase_item"
             android:layout_centerInParent="true"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:text="0"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:text="|"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"/>
+
+        <TextView
+            android:id="@+id/txt_item_total_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/txt_divider"
+            android:layout_centerInParent="true"
+            android:padding="8dp"
+            android:text="Rs. 20147"
             android:textStyle="bold"
             android:textColor="@android:color/white"/>
 
         <Button
             android:id="@+id/btn_increase_item"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="60dp"
+            android:layout_height="24dp"
             android:layout_centerInParent="true"
             android:layout_alignParentEnd="true"
             android:layout_marginLeft="8dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginRight="8dp"
             android:background="@android:color/holo_orange_dark"
-            android:text="+"
-            android:textStyle="bold"
+            android:text="Add Item"
+            android:textSize="10sp"
             android:textColor="@android:color/white"/>
 
     </RelativeLayout>
@@ -120,7 +132,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/holo_orange_dark"
-        android:text="Add to Cart"
+        android:text="Go to Cart"
         android:textStyle="bold"
         android:textColor="@android:color/white"/>
 

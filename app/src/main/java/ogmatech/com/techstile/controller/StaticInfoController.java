@@ -1,9 +1,12 @@
 package ogmatech.com.techstile.controller;
 
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -22,23 +25,23 @@ import ogmatech.com.techstile.model.OrderType;
 import ogmatech.com.techstile.model.PaymentType;
 import ogmatech.com.techstile.model.Remark;
 import ogmatech.com.techstile.model.Service;
-import ogmatech.com.techstile.wrapper.UserInitializerWrapper;
 
 public class StaticInfoController {
 
     private static StaticInfoController staticInfoController;
-    private List<CustomerType> customerTypes = new ArrayList<>();
-    private List<DyeingColor> dyeingColors = new ArrayList<>();
-    private List<ExtraService> extraServices = new ArrayList<>();
-    private List<ItemCategory> itemCategories = new ArrayList<>();
-    private List<ItemStatus> itemStatuses = new ArrayList<>();
-    private List<ItemType> itemTypes = new ArrayList<>();
-    private List<ItemTypeServicePrice> itemTypeServicePrices = new ArrayList<>();
-    private List<OrderStatus> orderStatuses = new ArrayList<>();
-    private List<OrderType> orderTypes = new ArrayList<>();
-    private List<PaymentType>paymentTypes  = new ArrayList<>();
-    private List<Remark> remarks = new ArrayList<>();
-    private List<Service> services = new ArrayList<>();
+
+    private Map<Integer, CustomerType> customerTypeHashMap = new HashMap<>();
+    private Map<Integer, DyeingColor> dyeingColorHashMap = new HashMap<>();
+    private Map<Integer, ExtraService> extraServiceHashMap = new HashMap<>();
+    private Map<Integer, ItemCategory> itemCategoryHashMap = new HashMap<>();
+    private Map<Integer, ItemStatus> itemStatusHashMap = new HashMap<>();
+    private Map<Integer, ItemType> itemTypeHashMap = new HashMap<>();
+    private Map<Integer, ItemTypeServicePrice> itemTypeServicePriceHashMap = new HashMap<>();
+    private Map<Integer, OrderStatus> orderStatusHashMap = new HashMap<>();
+    private Map<Integer, OrderType> orderTypeHashMap = new HashMap<>();
+    private Map<Integer, PaymentType> paymentTypeHashMap = new HashMap<>();
+    private Map<Integer, Remark> remarkHashMap = new HashMap<>();
+    private Map<Integer, Service> serviceHashMap = new HashMap<>();
     private Branch branch = new Branch();
 
     public static StaticInfoController getInstance() {
@@ -60,100 +63,101 @@ public class StaticInfoController {
         staticInfoController = null;
     }
 
-    public List<CustomerType> getCustomerTypes() {
-        return customerTypes;
+
+    public Map<Integer, CustomerType> getCustomerTypeHashMap() {
+        return customerTypeHashMap;
     }
 
-    public void setCustomerTypes(List<CustomerType> customerTypes) {
-        this.customerTypes = customerTypes;
+    public void setCustomerTypeHashMap(Map<Integer, CustomerType> customerTypeHashMap) {
+        this.customerTypeHashMap = customerTypeHashMap;
     }
 
-    public List<DyeingColor> getDyeingColors() {
-        return dyeingColors;
+    public Map<Integer, DyeingColor> getDyeingColorHashMap() {
+        return dyeingColorHashMap;
     }
 
-    public void setDyeingColors(List<DyeingColor> dyeingColors) {
-        this.dyeingColors = dyeingColors;
+    public void setDyeingColorHashMap(Map<Integer, DyeingColor> dyeingColorHashMap) {
+        this.dyeingColorHashMap = dyeingColorHashMap;
     }
 
-    public List<ExtraService> getExtraServices() {
-        return extraServices;
+    public Map<Integer, ExtraService> getExtraServiceHashMap() {
+        return extraServiceHashMap;
     }
 
-    public void setExtraServices(List<ExtraService> extraServices) {
-        this.extraServices = extraServices;
+    public void setExtraServiceHashMap(Map<Integer, ExtraService> extraServiceHashMap) {
+        this.extraServiceHashMap = extraServiceHashMap;
     }
 
-    public List<ItemCategory> getItemCategories() {
-        return itemCategories;
+    public Map<Integer, ItemCategory> getItemCategoryHashMap() {
+        return itemCategoryHashMap;
     }
 
-    public void setItemCategories(List<ItemCategory> itemCategories) {
-        this.itemCategories = itemCategories;
+    public void setItemCategoryHashMap(Map<Integer, ItemCategory> itemCategoryHashMap) {
+        this.itemCategoryHashMap = itemCategoryHashMap;
     }
 
-    public List<ItemStatus> getItemStatuses() {
-        return itemStatuses;
+    public Map<Integer, ItemStatus> getItemStatusHashMap() {
+        return itemStatusHashMap;
     }
 
-    public void setItemStatuses(List<ItemStatus> itemStatuses) {
-        this.itemStatuses = itemStatuses;
+    public void setItemStatusHashMap(Map<Integer, ItemStatus> itemStatusHashMap) {
+        this.itemStatusHashMap = itemStatusHashMap;
     }
 
-    public List<ItemType> getItemTypes() {
-        return itemTypes;
+    public Map<Integer, ItemType> getItemTypeHashMap() {
+        return itemTypeHashMap;
     }
 
-    public void setItemTypes(List<ItemType> itemTypes) {
-        this.itemTypes = itemTypes;
+    public void setItemTypeHashMap(Map<Integer, ItemType> itemTypeHashMap) {
+        this.itemTypeHashMap = itemTypeHashMap;
     }
 
-    public List<ItemTypeServicePrice> getItemTypeServicePrices() {
-        return itemTypeServicePrices;
+    public Map<Integer, ItemTypeServicePrice> getItemTypeServicePriceHashMap() {
+        return itemTypeServicePriceHashMap;
     }
 
-    public void setItemTypeServicePrices(List<ItemTypeServicePrice> itemTypeServicePrices) {
-        this.itemTypeServicePrices = itemTypeServicePrices;
+    public void setItemTypeServicePriceHashMap(Map<Integer, ItemTypeServicePrice> itemTypeServicePriceHashMap) {
+        this.itemTypeServicePriceHashMap = itemTypeServicePriceHashMap;
     }
 
-    public List<OrderStatus> getOrderStatuses() {
-        return orderStatuses;
+    public Map<Integer, OrderStatus> getOrderStatusHashMap() {
+        return orderStatusHashMap;
     }
 
-    public void setOrderStatuses(List<OrderStatus> orderStatuses) {
-        this.orderStatuses = orderStatuses;
+    public void setOrderStatusHashMap(Map<Integer, OrderStatus> orderStatusHashMap) {
+        this.orderStatusHashMap = orderStatusHashMap;
     }
 
-    public List<OrderType> getOrderTypes() {
-        return orderTypes;
+    public Map<Integer, OrderType> getOrderTypeHashMap() {
+        return orderTypeHashMap;
     }
 
-    public void setOrderTypes(List<OrderType> orderTypes) {
-        this.orderTypes = orderTypes;
+    public void setOrderTypeHashMap(Map<Integer, OrderType> orderTypeHashMap) {
+        this.orderTypeHashMap = orderTypeHashMap;
     }
 
-    public List<PaymentType> getPaymentTypes() {
-        return paymentTypes;
+    public Map<Integer, PaymentType> getPaymentTypeHashMap() {
+        return paymentTypeHashMap;
     }
 
-    public void setPaymentTypes(List<PaymentType> paymentTypes) {
-        this.paymentTypes = paymentTypes;
+    public void setPaymentTypeHashMap(Map<Integer, PaymentType> paymentTypeHashMap) {
+        this.paymentTypeHashMap = paymentTypeHashMap;
     }
 
-    public List<Remark> getRemarks() {
-        return remarks;
+    public Map<Integer, Remark> getRemarkHashMap() {
+        return remarkHashMap;
     }
 
-    public void setRemarks(List<Remark> remarks) {
-        this.remarks = remarks;
+    public void setRemarkHashMap(Map<Integer, Remark> remarkHashMap) {
+        this.remarkHashMap = remarkHashMap;
     }
 
-    public List<Service> getServices() {
-        return services;
+    public Map<Integer, Service> getServiceHashMap() {
+        return serviceHashMap;
     }
 
-    public void setServices(List<Service> services) {
-        this.services = services;
+    public void setServiceHashMap(Map<Integer, Service> serviceHashMap) {
+        this.serviceHashMap = serviceHashMap;
     }
 
     public Branch getBranch() {
@@ -171,18 +175,54 @@ public class StaticInfoController {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(t -> {
                     staticInfoController.setBranch(t.getBranch());
-                    staticInfoController.setServices(t.getServices());
-                    staticInfoController.setRemarks(t.getRemarks());
-                    staticInfoController.setOrderStatuses(t.getOrderStatuses());
-                    staticInfoController.setItemStatuses(t.getItemStatuses());
-                    staticInfoController.setCustomerTypes(t.getCustomerTypes());
-                    staticInfoController.setDyeingColors(t.getDyeingColors());
-                    staticInfoController.setExtraServices(t.getExtraServices());
-                    staticInfoController.setItemCategories(t.getItemCategories());
-                    staticInfoController.setItemTypes(t.getItemTypes());
-                    staticInfoController.setItemTypeServicePrices(t.getItemTypeServicePrices());
-                    staticInfoController.setOrderTypes(t.getOrderTypes());
-                    staticInfoController.setPaymentTypes(t.getPaymentTypes());
+
+                    for (CustomerType customerType : t.getCustomerTypes()){
+                        customerTypeHashMap.put(customerType.getIdCustomerType(),customerType);
+                    }
+
+                    for (DyeingColor dyeingColor : t.getDyeingColors()){
+                        dyeingColorHashMap.put(dyeingColor.getIdDyeingColor(),dyeingColor);
+                    }
+
+                    for (ExtraService extraService : t.getExtraServices()){
+                        extraServiceHashMap.put(extraService.getIdExtraService(),extraService);
+                    }
+
+                    for (ItemCategory itemCategory : t.getItemCategories()){
+                        itemCategoryHashMap.put(itemCategory.getIdItemCategory(),itemCategory);
+                    }
+
+                    for (ItemStatus itemStatus : t.getItemStatuses()){
+                        itemStatusHashMap.put(itemStatus.getIdItemStatus(),itemStatus);
+                    }
+
+                    for (ItemType itemType : t.getItemTypes()){
+                        itemTypeHashMap.put(itemType.getIdItemType(),itemType);
+                    }
+
+                    for (ItemTypeServicePrice itemTypeServicePrice : t.getItemTypeServicePrices()){
+                        itemTypeServicePriceHashMap.put(itemTypeServicePrice.getIdItemTypeServicePrice(),itemTypeServicePrice);
+                    }
+
+                    for (OrderStatus orderStatus : t.getOrderStatuses()){
+                        orderStatusHashMap.put(orderStatus.getIdOrderStatus(),orderStatus);
+                    }
+
+                    for (OrderType orderType : t.getOrderTypes()){
+                        orderTypeHashMap.put(orderType.getIdOrderType(),orderType);
+                    }
+
+                    for (PaymentType paymentType : t.getPaymentTypes()){
+                        paymentTypeHashMap.put(paymentType.getIdPaymentType(),paymentType);
+                    }
+
+                    for (Remark remark : t.getRemarks()){
+                        remarkHashMap.put(remark.getIdRemark(),remark);
+                    }
+
+                    for (Service service : t.getServices()){
+                        serviceHashMap.put(service.getIdService(),service);
+                    }
                             Log.d("StatisInfooController", "loadStaticInfo: ");},
                         throwable -> Log.d("StatisInfooController", "loadStaticInfo: "));
 

@@ -107,20 +107,12 @@ public class OrderCreateActivity extends BaseDrawerActivity implements CartItemF
 
     public void onItemTypeClicked(int position, ItemType itemType) {
         Bundle bundle = new Bundle();
-        bundle.putString("itemTypeId",itemType.getIdItemType().toString());
-
+        bundle.putString("itemTypeName", itemType.getItemTypeName());
+        bundle.putString("itemTypeImageLink",itemType.getItemTypeImageLink());
+        bundle.putInt("idItemType",itemType.getIdItemType());
         Fragment itemAddFragment = new ItemAddFragment();
         itemAddFragment.setArguments(bundle);
-        /*FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-
-
-        transaction.replace(R.id.fragment_holder, itemAddFragment);
-
-        transaction.commit();*/
         addFragment(itemAddFragment, "ItemAddFragment");
-
-
     }
 
 

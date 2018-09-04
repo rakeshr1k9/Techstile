@@ -1,8 +1,11 @@
 package ogmatech.com.techstile.model;
 
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.util.List;
 
-public class ItemType {
+public class ItemType implements Serializable {
 
     private Integer idItemType;
     private String itemTypeName;

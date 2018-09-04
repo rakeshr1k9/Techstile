@@ -12,11 +12,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ogmatech.com.techstile.OrderActivity;
 import ogmatech.com.techstile.R;
+import ogmatech.com.techstile.controller.StaticInfoController;
+import ogmatech.com.techstile.model.ItemCategory;
 
 
 public class ItemTypeFragment extends Fragment {
+
+    ViewPager viewPager;
+    TabLayout tabLayout;
+
+    List<ItemCategory> itemCategories = new ArrayList<>(StaticInfoController.getInstance().getItemCategoryHashMap().values());
 
     public ItemTypeFragment() {
         // Required empty public constructor
@@ -32,17 +42,16 @@ public class ItemTypeFragment extends Fragment {
         SectionsPagerAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getChildFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        ViewPager mViewPager = view.findViewById(R.id.item_type_container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+        viewPager = view.findViewById(R.id.item_type_container);
+        viewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = view.findViewById(R.id.tab_item_category_list);
-        tabLayout.setupWithViewPager(mViewPager);
+        tabLayout = view.findViewById(R.id.tab_item_category_list);
+        tabLayout.setupWithViewPager(viewPager);
 
        // getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
         return view;
     }
-
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
@@ -56,74 +65,21 @@ public class ItemTypeFragment extends Fragment {
             // Return a PlaceholderFragment (defined as a static inner class below).
 
             Bundle bundle = new Bundle();
-
-            switch (position){
-                case 0:
-                    bundle.putString("itemCategoryFilter","Men");
-                    AllItemTypeFragment MenFragment = new AllItemTypeFragment();
-                    MenFragment.setArguments(bundle);
-                    return MenFragment;
-                case 1:
-                    bundle.putString("itemCategoryFilter","Women");
-                    AllItemTypeFragment womenFragment = new AllItemTypeFragment();
-                    womenFragment.setArguments(bundle);
-                    return womenFragment;
-                case 2:
-                    bundle.putString("itemCategoryFilter","Silk");
-                    AllItemTypeFragment silkFragment = new AllItemTypeFragment();
-                    silkFragment.setArguments(bundle);
-                    return silkFragment;
-                case 3:
-                    bundle.putString("itemCategoryFilter","Woolen");
-                    AllItemTypeFragment woolenFragment = new AllItemTypeFragment();
-                    woolenFragment.setArguments(bundle);
-                    return woolenFragment;
-                case 4:
-                    bundle.putString("itemCategoryFilter","Household");
-                    AllItemTypeFragment householdFragment = new AllItemTypeFragment();
-                    householdFragment.setArguments(bundle);
-                    return householdFragment;
-                case 5:
-                    bundle.putString("itemCategoryFilter","Accessories");
-                    AllItemTypeFragment accessoriesFragment = new AllItemTypeFragment();
-                    accessoriesFragment.setArguments(bundle);
-                    return accessoriesFragment;
-                case 6:
-                    bundle.putString("itemCategoryFilter","Kids");
-                    AllItemTypeFragment kidsFragment = new AllItemTypeFragment();
-                    kidsFragment.setArguments(bundle);
-                    return kidsFragment;
-                default:
-                    return OrderActivity.PlaceholderFragment.newInstance(position + 1);
-            }
+            bundle.putInt("categoryId",itemCategories.get(position).getIdItemCategory());
+            AllItemTypeFragment allItemTypeFragment = new AllItemTypeFragment();
+            allItemTypeFragment.setArguments(bundle);
+            return allItemTypeFragment;
         }
-
 
         @Override
         public int getCount() {
-            // Show 7 total pages.
-            return 7;
+            return itemCategories == null ? 0 : itemCategories.size();
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "Men";
-                case 1:
-                    return "Women";
-                case 2:
-                    return "Silk";
-                case 3:
-                    return "Woolen";
-                case 4:
-                    return "Household";
-                case 5:
-                    return "Accessories";
-                case 6:
-                    return "Kids";
-            }
-            return null;
+            String tabTitle = itemCategories.get(position).getItemCategoryName();
+            return tabTitle;
         }
     }
 
