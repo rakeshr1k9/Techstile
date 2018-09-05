@@ -35,7 +35,7 @@ public class ItemAddFragment extends Fragment {
     }
 
     public interface OnClickButtonListener{
-        void onAddItemServiceClicked();
+        void onAddItemServiceClicked(Integer idItemType);
         void onClearItemsClicked();
         void onAddToCartClicked();
     }
@@ -55,7 +55,7 @@ public class ItemAddFragment extends Fragment {
         itemTypeImageDisplay(itemTypeImageLink, displayItemTypeImageLink);
 
         Button addItem = view.findViewById(R.id.btn_increase_item);
-        addItem.setOnClickListener(v -> onClickButtonListner.onAddItemServiceClicked());
+        addItem.setOnClickListener(v -> onClickButtonListner.onAddItemServiceClicked(idItemType));
 
         Button clearItems = view.findViewById(R.id.btn_item_delete_all);
         clearItems.setOnClickListener(v -> onClickButtonListner.onClearItemsClicked());

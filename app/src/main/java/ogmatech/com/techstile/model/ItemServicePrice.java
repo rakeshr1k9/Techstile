@@ -1,6 +1,6 @@
 package ogmatech.com.techstile.model;
 
-public class ItemServicePrice {
+public class ItemServicePrice implements Cloneable{
 
     private Integer idItemServicePrice;
     private Byte isDeleted;
@@ -120,5 +120,10 @@ public class ItemServicePrice {
 
     public void setBranchId(Integer branchId) {
         this.branchId = branchId;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

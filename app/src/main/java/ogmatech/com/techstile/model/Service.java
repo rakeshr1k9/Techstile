@@ -8,6 +8,7 @@ public class Service {
     private String serviceCode;
     private Byte isDeleted;
     private Integer serviceOrder;
+    private Service serviceImageLink;
 
     private List<ItemServicePrice> itemServicePrices;
     private List<ItemTypeServicePrice> itemTypeServicePrices;
@@ -43,6 +44,14 @@ public class Service {
 
     public void setServiceOrder(Integer serviceOrder) {
         this.serviceOrder = serviceOrder;
+    }
+
+    public Service getServiceImageLink() {
+        return serviceImageLink;
+    }
+
+    public void setServiceImageLink(Service serviceImageLink) {
+        this.serviceImageLink = serviceImageLink;
     }
 
     public Byte getIsDeleted() {

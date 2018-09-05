@@ -1,6 +1,7 @@
 package ogmatech.com.techstile.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,7 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Observable;
 import java.util.stream.Collectors;
 
 import ogmatech.com.techstile.R;
@@ -30,7 +33,15 @@ public class ItemServicePriceAdapter extends RecyclerView.Adapter<ItemServicePri
     public ItemServicePriceAdapter(Integer idItemType){
 
         List<ItemTypeServicePrice> itemTypeServicePrices = new ArrayList<>(StaticInfoController.getInstance().getItemTypeServicePriceHashMap().values());
-        List<ItemTypeServicePrice> filterItemTypeServicePrice = itemTypeServicePrices.stream().filter(itemTypeServicePrice -> itemTypeServicePrice.getItemTypeId().equals(idItemType)).collect(Collectors.toList());
+        List<Integer> serviceIds = new ArrayList<>();
+        io.reactivex.Observable
+                .fromIterable(itemTypeServicePrices)
+                .filter(itemTypeServicePrice ->  idItemType == itemTypeServicePrice.getItemTypeId())
+                .map(itemTypeServicePrice -> {
+                    serviceIds.add(itemTypeServicePrice.getServiceId());
+                    return itemTypeServicePrice;
+                });
+         List<ItemTypeServicePrice> filterItemTypeServicePrice = itemTypeServicePrices.stream().filter(itemTypeServicePrice -> itemTypeServicePrice.getItemTypeId().equals(idItemType)).collect(Collectors.toList());
 
     }
 
@@ -40,13 +51,13 @@ public class ItemServicePriceAdapter extends RecyclerView.Adapter<ItemServicePri
 
     public class ItemServicePriceViewHolder extends RecyclerView.ViewHolder{
 
-        ImageView serviceImage;
+        ImageView serviceImageLink;
         TextView serviceName;
         TextView itemTypeServiceAmount;
 
         public ItemServicePriceViewHolder(View itemView) {
             super(itemView);
-            serviceImage = itemView.findViewById(R.id.img_service_icon);
+            serviceImageLink = itemView.findViewById(R.id.img_service_icon);
             serviceName = itemView.findViewById(R.id.txt_item_service_name);
             itemTypeServiceAmount = itemView.findViewById(R.id.txt_item_service_amount);
         }
@@ -67,11 +78,33 @@ public class ItemServicePriceAdapter extends RecyclerView.Adapter<ItemServicePri
     public void onBindViewHolder(@NonNull ItemServicePriceViewHolder holder, int position) {
 
 
+
+
     }
 
     @Override
     public int getItemCount() {
         return 0;
+    }
+
+    private void serviceImageDisplay(ImageView serviceImageLink, String displayServiceImageLink) {
+        String uri;
+
+        if(displayServiceImageLink == null) {
+            uri = "@drawable/colorremove";
+        }
+        else {
+            String imgName = displayServiceImageLink;
+            if(imgName.indexOf(".")>0)
+            {
+                imgName = imgName.substring(0, imgName.lastIndexOf("."));
+            }
+            uri = "@drawable/"+imgName;
+        }
+
+        /*int imageResource = getContext().getResources().getIdentifier(uri, null, getContext().getPackageName());
+        Drawable res = getContext().getResources().getDrawable(imageResource);
+        itemTypeImageLink.setImageDrawable(res);*/
     }
 
 }

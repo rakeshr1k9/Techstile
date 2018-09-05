@@ -91,7 +91,9 @@ public class OrderCreateActivity extends BaseDrawerActivity implements CartItemF
     }
 
     @Override
-    public void onAddItemServiceClicked() {
+    public void onAddItemServiceClicked(Integer idItemType) {
+
+
 
     }
 
