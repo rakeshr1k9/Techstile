@@ -23,8 +23,8 @@
 
             <ImageView
                 android:id="@+id/icon_service"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_margin="8dp"
                 android:layout_alignParentStart="true"
                 android:layout_centerHorizontal="true"
@@ -42,7 +42,7 @@
                 android:text="DryClean (Rs. 50/-)"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
-                android:textSize="16sp" />
+                android:textSize="12sp" />
 
             <EditText
                 android:id="@+id/edit_text_item_service_price"
@@ -52,10 +52,10 @@
                 android:layout_centerInParent="true"
                 android:layout_margin="8dp"
                 android:layout_toStartOf="@id/check_box_item_service"
-                android:text="70"
+                android:text=""
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
-                android:textSize="18sp"/>
+                android:textSize="14sp"/>
 
             <CheckBox
                 android:id="@+id/check_box_item_service"

@@ -76,7 +76,7 @@ public class ItemServiceAdapter extends RecyclerView.Adapter<ItemServiceAdapter.
         Drawable res = holder.itemView.getContext().getResources().getDrawable(imageResource);
         holder.serviceIcon.setImageDrawable(res);
 
-        String serviceInfo = itemTypeServiceWrapper.getServiceName() + " - (Rs. " + itemTypeServiceWrapper.getServicePrice().toString()+"/-";
+        String serviceInfo = itemTypeServiceWrapper.getServiceName() + " - (Rs. " + itemTypeServiceWrapper.getServicePrice().toString()+"/-)";
         holder.itemServiceInfo.setText(serviceInfo);
 
     }

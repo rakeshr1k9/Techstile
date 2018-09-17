@@ -92,7 +92,7 @@ public class AllItemTypeFragment extends Fragment {
                 });*/
 
 
-        List<ItemType> itemTypes = new ArrayList<>(StaticInfoController.getInstance().getItemTypeHashMap().values());
+        List<ItemType> itemTypes = new ArrayList<>(StaticInfoController.getInstance().getItemTypes());
         List<ItemType> filtered = new ArrayList<>();
         Observable
                 .fromIterable(itemTypes)

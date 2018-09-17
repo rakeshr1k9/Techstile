@@ -26,7 +26,7 @@ public class ItemTypeFragment extends Fragment {
     ViewPager viewPager;
     TabLayout tabLayout;
 
-    List<ItemCategory> itemCategories = new ArrayList<>(StaticInfoController.getInstance().getItemCategoryHashMap().values());
+   // List<ItemCategory> itemCategories = new ArrayList<>(StaticInfoController.getInstance().getItemCategoryHashMap().values());
 
     public ItemTypeFragment() {
         // Required empty public constructor

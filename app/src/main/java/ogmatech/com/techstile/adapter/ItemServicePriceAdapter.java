@@ -32,7 +32,7 @@ public class ItemServicePriceAdapter extends RecyclerView.Adapter<ItemServicePri
 
     public ItemServicePriceAdapter(Integer idItemType){
 
-        List<ItemTypeServicePrice> itemTypeServicePrices = new ArrayList<>(StaticInfoController.getInstance().getItemTypeServicePriceHashMap().values());
+       /* List<ItemTypeServicePrice> itemTypeServicePrices = new ArrayList<>(StaticInfoController.getInstance().getItemTypeServicePriceHashMap().values());
         List<Integer> serviceIds = new ArrayList<>();
         io.reactivex.Observable
                 .fromIterable(itemTypeServicePrices)
@@ -42,7 +42,7 @@ public class ItemServicePriceAdapter extends RecyclerView.Adapter<ItemServicePri
                     return itemTypeServicePrice;
                 });
          List<ItemTypeServicePrice> filterItemTypeServicePrice = itemTypeServicePrices.stream().filter(itemTypeServicePrice -> itemTypeServicePrice.getItemTypeId().equals(idItemType)).collect(Collectors.toList());
-
+*/
     }
 
     public void setRowIndex(int index) {
