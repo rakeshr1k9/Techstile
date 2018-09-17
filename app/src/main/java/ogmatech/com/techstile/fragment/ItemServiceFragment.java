@@ -15,8 +15,17 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import ogmatech.com.techstile.R;
+import ogmatech.com.techstile.adapter.CartItemAdapter;
 import ogmatech.com.techstile.adapter.ItemServiceAdapter;
+import ogmatech.com.techstile.api.service.CartItemService;
+import ogmatech.com.techstile.wrapper.CartItemWrapper;
+import ogmatech.com.techstile.wrapper.ItemTypeServiceWrapper;
 
 public class ItemServiceFragment extends Fragment {
 
@@ -50,6 +59,8 @@ public class ItemServiceFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_item_service, container, false);
 
+        getNewServiceApi();
+
         itemServiceTotalPrice = view.findViewById(R.id.txt_item_service_total_price);
         itemServiceTotalPrice.setText("Total : Rs. 14220/-");
 
@@ -76,10 +87,7 @@ public class ItemServiceFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recycler_view_item_service_select);
 
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 1);
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(itemServiceAdapter);
+
         return view;
     }
 
@@ -124,6 +132,22 @@ public class ItemServiceFragment extends Fragment {
         int imageResource = getContext().getResources().getIdentifier(uri, null, getContext().getPackageName());
         Drawable res = getContext().getResources().getDrawable(imageResource);
         itemTypeImageLink.setImageDrawable(res);
+    }
+
+    private void getNewServiceApi(){
+
+        List<ItemTypeServiceWrapper> itemTypeServiceWrappers = new ArrayList<>();
+
+        CartItemService.getItemTypeService(this.idItemType)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(t->{itemServiceAdapter = new ItemServiceAdapter(getActivity(),t);
+                    RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 1);
+                    recyclerView.setLayoutManager(mLayoutManager);
+                    recyclerView.setItemAnimator(new DefaultItemAnimator());
+                    recyclerView.setAdapter(itemServiceAdapter);
+                });
+
     }
 
 }

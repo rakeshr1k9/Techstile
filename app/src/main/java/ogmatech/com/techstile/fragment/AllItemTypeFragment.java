@@ -19,10 +19,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import ogmatech.com.techstile.R;
+import ogmatech.com.techstile.adapter.CartItemAdapter;
 import ogmatech.com.techstile.adapter.ItemTypeAdapter;
+import ogmatech.com.techstile.api.service.CartItemService;
+import ogmatech.com.techstile.api.service.StaticInfoService;
 import ogmatech.com.techstile.controller.StaticInfoController;
 import ogmatech.com.techstile.model.ItemType;
+import ogmatech.com.techstile.wrapper.CartItemWrapper;
 
 public class AllItemTypeFragment extends Fragment {
 
@@ -49,9 +55,10 @@ public class AllItemTypeFragment extends Fragment {
             categoryId = getArguments().getInt("categoryId");
         }
 
-        itemTypeAdapter = new ItemTypeAdapter(getItemTypeList(categoryId),(ItemTypeAdapter.ItemTypeClickListener) getActivity());
-
         recyclerView = view.findViewById(R.id.recycler_view_item_type);
+
+        getItemTypeList(categoryId);
+        itemTypeAdapter = new ItemTypeAdapter(getItemTypeList(categoryId),(ItemTypeAdapter.ItemTypeClickListener) getActivity());
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 3);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -72,6 +79,19 @@ public class AllItemTypeFragment extends Fragment {
     }
 
     private List<ItemType> getItemTypeList(Integer categoryId){
+
+        /*StaticInfoService.getItemType(categoryId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(t->{itemTypeAdapter = new ItemTypeAdapter(t,(ItemTypeAdapter.ItemTypeClickListener) getActivity());
+                    RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 3);
+                    recyclerView.setLayoutManager(mLayoutManager);
+                    recyclerView.addItemDecoration(new GridSpacingItemDecoration(3, dpToPx(4), true));
+                    recyclerView.setItemAnimator(new DefaultItemAnimator());
+                    recyclerView.setAdapter(itemTypeAdapter);
+                });*/
+
+
         List<ItemType> itemTypes = new ArrayList<>(StaticInfoController.getInstance().getItemTypeHashMap().values());
         List<ItemType> filtered = new ArrayList<>();
         Observable

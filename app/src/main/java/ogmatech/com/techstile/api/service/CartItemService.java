@@ -6,6 +6,7 @@ import io.reactivex.Single;
 import ogmatech.com.techstile.api.CartItemApi;
 import ogmatech.com.techstile.api.generic.ApiClient;
 import ogmatech.com.techstile.wrapper.CartItemWrapper;
+import ogmatech.com.techstile.wrapper.ItemTypeServiceWrapper;
 
 public class CartItemService {
 
@@ -15,6 +16,10 @@ public class CartItemService {
 
     public static Single<List<CartItemWrapper>> getCartItem(){
         return getApi().getCartItem();
+    }
+
+    public static Single<List<ItemTypeServiceWrapper>> getItemTypeService(Integer idItemType){
+        return getApi().getItemTypeService(idItemType);
     }
 
     public static Single<CartItemWrapper> deleteCartItem(Integer idUserCartItem) {

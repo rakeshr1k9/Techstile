@@ -1,12 +1,14 @@
 package ogmatech.com.techstile.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -20,37 +22,32 @@ import ogmatech.com.techstile.model.Item;
 import ogmatech.com.techstile.model.ItemExtraServicePrice;
 import ogmatech.com.techstile.model.ItemServicePrice;
 import ogmatech.com.techstile.model.ItemType;
+import ogmatech.com.techstile.wrapper.CartItemWrapper;
+import ogmatech.com.techstile.wrapper.ItemTypeServiceWrapper;
 
 public class ItemServiceAdapter extends RecyclerView.Adapter<ItemServiceAdapter.ItemServiceViewHolder> {
 
-    private ItemType itemType;
-    private ArrayList<Item> items;
-    private ArrayList<ItemServicePrice> itemServicePrices;
+    private Context context;
 
-    ItemServiceAdapter(ItemType itemType){
-        this.itemType = itemType;
-    }
-
-    public interface OnServiceAddListener{
-        void onItemServiceAddClicked(int position, Item item);
-    }
-
-    private OnServiceAddListener onServiceAddListener;
-
-    public void setOnServiceAddListener(OnServiceAddListener onServiceAddListener) {
-        this.onServiceAddListener = onServiceAddListener;
-    }
+    List<ItemTypeServiceWrapper> itemTypeServiceWrappers;
 
     class ItemServiceViewHolder extends RecyclerView.ViewHolder{
 
-        TextView itemTotal;
-        ImageView itemDelete;
+        ImageView serviceIcon;
+        EditText itemServicePriceEdit;
+        TextView itemServiceInfo;
 
         public ItemServiceViewHolder(View itemView) {
             super(itemView);
-           /* itemTotal = itemView.findViewById(R.id.txt_item_total);
-            itemDelete = itemView.findViewById(R.id.btn_item_delete);*/
+            serviceIcon = itemView.findViewById(R.id.icon_service);
+            itemServiceInfo = itemView.findViewById(R.id.txt_item_service_info);
+            itemServicePriceEdit = itemView.findViewById(R.id.edit_text_item_service_price);
         }
+    }
+
+    public ItemServiceAdapter(Context context, List<ItemTypeServiceWrapper> itemTypeServiceWrappers){
+        this.context = context;
+        this.itemTypeServiceWrappers = itemTypeServiceWrappers;
     }
 
     @NonNull
@@ -67,17 +64,25 @@ public class ItemServiceAdapter extends RecyclerView.Adapter<ItemServiceAdapter.
     @Override
     public void onBindViewHolder(@NonNull ItemServiceViewHolder holder, int position) {
 
-      /*  Item item = NewOrderController.getInstance().getOrder().getItems().get(position);
+        ItemTypeServiceWrapper itemTypeServiceWrapper = itemTypeServiceWrappers.get(position);
 
-        holder.itemCountNumber.setText(position);
-        holder.itemDelete.setImageResource(R.drawable.ic_close_black);
-        holder.itemTotal.setText(item.getItemTotalAmount());
-        holder.itemServiceAdd.setOnClickListener(v -> onServiceAddListener.onItemServiceAddClicked(position, item));*/
+        String imgName = itemTypeServiceWrapper.getServiceImageLink();
+        if(imgName.indexOf(".")>0)
+        {
+            imgName = imgName.substring(0, imgName.lastIndexOf("."));
+        }
+        String uri = "@drawable/"+imgName;
+        int imageResource = holder.itemView.getContext().getResources().getIdentifier(uri, null, holder.itemView.getContext().getPackageName());
+        Drawable res = holder.itemView.getContext().getResources().getDrawable(imageResource);
+        holder.serviceIcon.setImageDrawable(res);
+
+        String serviceInfo = itemTypeServiceWrapper.getServiceName() + " - (Rs. " + itemTypeServiceWrapper.getServicePrice().toString()+"/-";
+        holder.itemServiceInfo.setText(serviceInfo);
 
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return itemTypeServiceWrappers.size();
     }
 }

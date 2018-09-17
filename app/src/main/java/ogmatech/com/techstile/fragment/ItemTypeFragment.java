@@ -65,21 +65,73 @@ public class ItemTypeFragment extends Fragment {
             // Return a PlaceholderFragment (defined as a static inner class below).
 
             Bundle bundle = new Bundle();
-            bundle.putInt("categoryId",itemCategories.get(position).getIdItemCategory());
-            AllItemTypeFragment allItemTypeFragment = new AllItemTypeFragment();
-            allItemTypeFragment.setArguments(bundle);
-            return allItemTypeFragment;
+
+            switch (position){
+                case 0:
+                    bundle.putInt("categoryId",1);
+                    AllItemTypeFragment allItemTypeFragment1 = new AllItemTypeFragment();
+                    allItemTypeFragment1.setArguments(bundle);
+                    return allItemTypeFragment1;
+                case 1:
+                    bundle.putInt("categoryId",2);
+                    AllItemTypeFragment allItemTypeFragment2 = new AllItemTypeFragment();
+                    allItemTypeFragment2.setArguments(bundle);
+                    return allItemTypeFragment2;
+                case 2:
+                    bundle.putInt("categoryId",3);
+                    AllItemTypeFragment allItemTypeFragment3 = new AllItemTypeFragment();
+                    allItemTypeFragment3.setArguments(bundle);
+                    return allItemTypeFragment3;
+                case 3:
+                    bundle.putInt("categoryId",4);
+                    AllItemTypeFragment allItemTypeFragment4 = new AllItemTypeFragment();
+                    allItemTypeFragment4.setArguments(bundle);
+                    return allItemTypeFragment4;
+                case 4:
+                    bundle.putInt("categoryId",5);
+                    AllItemTypeFragment allItemTypeFragment5 = new AllItemTypeFragment();
+                    allItemTypeFragment5.setArguments(bundle);
+                    return allItemTypeFragment5;
+                case 5:
+                    bundle.putInt("categoryId",6);
+                    AllItemTypeFragment allItemTypeFragment6 = new AllItemTypeFragment();
+                    allItemTypeFragment6.setArguments(bundle);
+                    return allItemTypeFragment6;
+                case 6:
+                    bundle.putInt("categoryId",7);
+                    AllItemTypeFragment allItemTypeFragment7 = new AllItemTypeFragment();
+                    allItemTypeFragment7.setArguments(bundle);
+                    return allItemTypeFragment7;
+                default:
+                    return null;
+            }
+
         }
 
         @Override
         public int getCount() {
-            return itemCategories == null ? 0 : itemCategories.size();
+            return 7;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            String tabTitle = itemCategories.get(position).getItemCategoryName();
-            return tabTitle;
+            switch (position) {
+                case 0:
+                    return "Men";
+                case 1:
+                    return "Women";
+                case 2:
+                    return "Silk";
+                case 3:
+                    return "Woolen";
+                case 4:
+                    return "Household";
+                case 5:
+                    return "Accessories";
+                case 6:
+                    return "Kids";
+            }
+            return null;
         }
     }
 

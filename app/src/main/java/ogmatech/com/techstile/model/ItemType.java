@@ -20,6 +20,10 @@ public class ItemType implements Serializable {
 
     private Integer itemCategoryId;
 
+    public ItemType(){
+
+    }
+
     public Integer getIdItemType() {
         return idItemType;
     }

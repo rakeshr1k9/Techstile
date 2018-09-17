@@ -66,7 +66,7 @@ public class CartItemFragment extends Fragment {
         itemTotalPrice = view.findViewById(R.id.txt_cart_total_item_price);
 
         Button addItem =  view.findViewById(R.id.button_cart_add_item);
-        addItem.setOnClickListener((View view1) -> onItemAddListener.onAddItemClicked());
+        addItem.setOnClickListener(v -> onItemAddListener.onAddItemClicked());
 
         Button checkout = view.findViewById(R.id.button_cart_checkout);
         checkout.setOnClickListener(v -> onItemAddListener.onCheckoutClicked());

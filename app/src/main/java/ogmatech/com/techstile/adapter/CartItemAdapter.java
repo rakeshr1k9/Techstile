@@ -94,7 +94,6 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
 
         holder.cartItemDelete.setOnClickListener(v->cartItemClickListner.onItemDeleteClicked(cartItemWrapper.getIdUserCartItem()));
 
-
     }
 
     @Override

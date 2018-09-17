@@ -100,7 +100,6 @@ public class OrderCreateActivity extends BaseDrawerActivity implements CartItemF
     @Override
     public void onAddItemClicked() {
        addFragment(new ItemTypeFragment(), "ItemTypeFragment");
-
     }
 
    /* @Override
