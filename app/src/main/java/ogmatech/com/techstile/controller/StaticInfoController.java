@@ -1,11 +1,8 @@
 package ogmatech.com.techstile.controller;
 
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;

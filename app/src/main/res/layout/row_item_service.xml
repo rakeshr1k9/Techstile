@@ -1,31 +1,40 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txt_service_name"
-                android:layout_alignParentStart="true"
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
-                android:paddingTop="1dp"
-                android:paddingBottom="1dp"
-                android:textColor="@android:color/darker_gray"
-                android:text="Pant"
-                android:textSize="9sp" />
 
-            <TextView
-                android:id="@+id/txt_service_price"
-                android:layout_alignParentEnd="true"
-                android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingRight="8dp"
-                android:paddingTop="1dp"
-                android:paddingBottom="1dp"
-                android:textColor="@android:color/darker_gray"
-                android:text="1200/-"
-                android:textSize="9sp" />
+    <CheckBox
+        android:id="@+id/img_service_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/colorremovez"
+        android:layout_gravity="center"
+        android:padding="2dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/txt_item_service_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Color remove"
+        android:textSize="9sp"
+        android:textColor="@android:color/darker_gray"
+        android:layout_gravity="center"
+        android:layout_margin="2dp"
+        />
+
+    <TextView
+        android:id="@+id/txt_item_service_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="300"
+        android:textSize="9sp"
+        android:textColor="@android:color/darker_gray"
+        android:layout_gravity="center"
+        android:layout_margin="2dp"
+        />
+
+</LinearLayout>

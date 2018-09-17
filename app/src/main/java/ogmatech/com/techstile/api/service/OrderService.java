@@ -1,6 +1,5 @@
 package ogmatech.com.techstile.api.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Single;

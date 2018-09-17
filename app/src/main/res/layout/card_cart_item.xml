@@ -9,7 +9,7 @@
 
 
     <android.support.v7.widget.CardView
-        android:id="@+id/card_view"
+        android:id="@+id/cart_card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -56,18 +56,18 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:padding="8dp"
-                android:layout_marginEnd="18dp"
+                android:layout_marginEnd="8dp"
                 android:layout_toLeftOf="@id/cart_item_info"
                 android:text="D\nd/r\nT\nc/r\nDye\nS "
                 android:lineSpacingExtra="1dp"
                 android:textColor="@android:color/darker_gray"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:id="@+id/cart_item_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
+                android:layout_toLeftOf="@id/img_btn_cart_item_close"
                 android:layout_centerInParent="true"
                 android:layout_margin="8dp"
                 android:orientation="vertical">
@@ -98,6 +98,16 @@
                     android:textSize="14sp" />
 
             </LinearLayout>
+
+            <ImageView
+                android:id="@+id/img_btn_cart_item_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:paddingEnd="8dp"
+                android:src="@drawable/ic_close_black"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"/>
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>

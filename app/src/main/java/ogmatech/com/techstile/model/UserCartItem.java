@@ -1,15 +1,21 @@
 package ogmatech.com.techstile.model;
 
+import java.util.Date;
 import java.util.List;
 
 public class UserCartItem {
 
     private Integer idUserCartItem;
-    private Integer userCartItemTypeId;
-    private String userCartItemTypeName;
     private Integer userCartItemTypeCount;
-    private Integer userId;
     private Integer userCartItemPrice;
+    private Date userCartItemCat;
+    private Date userCartItemUat;
+
+    private Integer itemTypeId;
+    private Integer userId;
+
+    private ItemType itemType;
+    private User user;
 
     private List<UserCartItemService> userCartItemServices;
 
@@ -21,28 +27,44 @@ public class UserCartItem {
         this.idUserCartItem = idUserCartItem;
     }
 
-    public Integer getUserCartItemTypeId() {
-        return userCartItemTypeId;
-    }
-
-    public void setUserCartItemTypeId(Integer userCartItemTypeId) {
-        this.userCartItemTypeId = userCartItemTypeId;
-    }
-
-    public String getUserCartItemTypeName() {
-        return userCartItemTypeName;
-    }
-
-    public void setUserCartItemTypeName(String userCartItemTypeName) {
-        this.userCartItemTypeName = userCartItemTypeName;
-    }
-
     public Integer getUserCartItemTypeCount() {
         return userCartItemTypeCount;
     }
 
     public void setUserCartItemTypeCount(Integer userCartItemTypeCount) {
         this.userCartItemTypeCount = userCartItemTypeCount;
+    }
+
+    public Integer getUserCartItemPrice() {
+        return userCartItemPrice;
+    }
+
+    public void setUserCartItemPrice(Integer userCartItemPrice) {
+        this.userCartItemPrice = userCartItemPrice;
+    }
+
+    public Date getUserCartItemCat() {
+        return userCartItemCat;
+    }
+
+    public void setUserCartItemCat(Date userCartItemCat) {
+        this.userCartItemCat = userCartItemCat;
+    }
+
+    public Date getUserCartItemUat() {
+        return userCartItemUat;
+    }
+
+    public void setUserCartItemUat(Date userCartItemUat) {
+        this.userCartItemUat = userCartItemUat;
+    }
+
+    public Integer getItemTypeId() {
+        return itemTypeId;
+    }
+
+    public void setItemTypeId(Integer itemTypeId) {
+        this.itemTypeId = itemTypeId;
     }
 
     public Integer getUserId() {
@@ -53,12 +75,20 @@ public class UserCartItem {
         this.userId = userId;
     }
 
-    public Integer getUserCartItemPrice() {
-        return userCartItemPrice;
+    public ItemType getItemType() {
+        return itemType;
     }
 
-    public void setUserCartItemPrice(Integer userCartItemPrice) {
-        this.userCartItemPrice = userCartItemPrice;
+    public void setItemType(ItemType itemType) {
+        this.itemType = itemType;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public List<UserCartItemService> getUserCartItemServices() {

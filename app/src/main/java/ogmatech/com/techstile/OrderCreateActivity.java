@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,15 +17,27 @@ import android.widget.Toast;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+import ogmatech.com.techstile.adapter.CartItemAdapter;
 import ogmatech.com.techstile.adapter.ItemTypeAdapter;
-import ogmatech.com.techstile.fragment.AllItemTypeFragment;
+import ogmatech.com.techstile.api.service.CartItemService;
+import ogmatech.com.techstile.controller.NewOrderController;
+import ogmatech.com.techstile.controller.StaticInfoController;
 import ogmatech.com.techstile.fragment.CartItemFragment;
-import ogmatech.com.techstile.fragment.ItemAddFragment;
+import ogmatech.com.techstile.fragment.ItemServiceFragment;
 import ogmatech.com.techstile.fragment.ItemTypeFragment;
+import ogmatech.com.techstile.model.Branch;
+import ogmatech.com.techstile.model.Item;
+import ogmatech.com.techstile.model.ItemStatus;
 import ogmatech.com.techstile.model.ItemType;
 import ogmatech.com.techstile.model.SearchString;
 
-public class OrderCreateActivity extends BaseDrawerActivity implements CartItemFragment.OnItemAddListener,ItemTypeAdapter.ItemTypeClickListener, ItemAddFragment.OnClickButtonListener {
+public class OrderCreateActivity extends BaseDrawerActivity implements CartItemFragment.OnItemAddListener,ItemTypeAdapter.ItemTypeClickListener, ItemServiceFragment.OnServiceAddListener, CartItemAdapter.CartItemClickListner {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,31 +103,44 @@ public class OrderCreateActivity extends BaseDrawerActivity implements CartItemF
 
     }
 
-    @Override
-    public void onAddItemServiceClicked(Integer idItemType) {
+   /* @Override
+    public void onAddItemServiceClicked(Integer idItemType, int itemCount) {
+
+        if(itemCount == -1){
+            HashMap<Integer, ItemType> itemTypeHash = new HashMap<>(StaticInfoController.getInstance().getItemTypeHashMap());
+            HashMap<Integer, ItemStatus> itemStatusHash = new HashMap<>(StaticInfoController.getInstance().getItemStatusHashMap());
+            Branch branch = StaticInfoController.getInstance().getBranch();
+            ItemStatus itemStatus = itemStatusHash.get(1);
+            ItemType itemType = itemTypeHash.get(idItemType);
+
+            Item item = new Item();
+            item.setItemType(itemType);
+            item.setBranch(branch);
+            item.setItemStatus(itemStatus);
+
+            List<Item> items = new ArrayList<>();
+            items.add(item);
+
+            NewOrderController newOrderController = new NewOrderController();
+            newOrderController.getOrder().setItems(items);
+        }
+        else {
+
+        }
 
 
 
     }
-
-    @Override
-    public void onClearItemsClicked() {
-
-    }
-
-    @Override
-    public void onAddToCartClicked() {
-
-    }
+    */
 
     public void onItemTypeClicked(int position, ItemType itemType) {
         Bundle bundle = new Bundle();
         bundle.putString("itemTypeName", itemType.getItemTypeName());
         bundle.putString("itemTypeImageLink",itemType.getItemTypeImageLink());
         bundle.putInt("idItemType",itemType.getIdItemType());
-        Fragment itemAddFragment = new ItemAddFragment();
+        Fragment itemAddFragment = new ItemServiceFragment();
         itemAddFragment.setArguments(bundle);
-        addFragment(itemAddFragment, "ItemAddFragment");
+        addFragment(itemAddFragment, "ItemServiceFragment");
     }
 
 
@@ -130,11 +156,61 @@ public class OrderCreateActivity extends BaseDrawerActivity implements CartItemF
 
     @Override
     public void onBackPressed() {
-        if (getTopFragment() instanceof ItemAddFragment) {
+        if (getTopFragment() instanceof ItemServiceFragment) {
             getSupportFragmentManager().popBackStack();
             getSupportFragmentManager().popBackStack();
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public void onCartItemClicked() {
+
+    }
+
+    @Override
+    public void onItemDeleteClicked(Integer idUserCartItem) {
+
+        /*CartItemFragment cartItemFragment = new CartItemFragment();
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.detach(cartItemFragment).attach(cartItemFragment).commit();*/
+
+        CartItemService.deleteCartItem(idUserCartItem)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe((t -> {
+                    Log.d("LoginFragment", "Number of movies received: " + t);
+                }), onError-> {
+                    Log.e("LoginFragment", onError.toString());
+                });
+
+        Fragment frg;
+        frg = getSupportFragmentManager().findFragmentByTag("CartItemFragment");
+        final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.detach(frg);
+        ft.attach(frg);
+        ft.commit();
+
+    }
+
+    @Override
+    public void onItemIncrementClicked() {
+
+    }
+
+    @Override
+    public void onServiceSaveClicked() {
+
+    }
+
+    @Override
+    public void onItemDecrementClicked() {
+
+    }
+
+    @Override
+    public void onDeleteAllServiceClicked() {
+
     }
 }

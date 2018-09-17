@@ -13,6 +13,7 @@ public class Service {
     private List<ItemServicePrice> itemServicePrices;
     private List<ItemTypeServicePrice> itemTypeServicePrices;
     private List<WorkerService> workerServices;
+    private List<UserCartItemService> userCartItemServices;
 
     public Integer getIdService() {
         return idService;
@@ -84,5 +85,13 @@ public class Service {
 
     public void setWorkerServices(List<WorkerService> workerServices) {
         this.workerServices = workerServices;
+    }
+
+    public List<UserCartItemService> getUserCartItemServices() {
+        return userCartItemServices;
+    }
+
+    public void setUserCartItemServices(List<UserCartItemService> userCartItemServices) {
+        this.userCartItemServices = userCartItemServices;
     }
 }

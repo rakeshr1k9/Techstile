@@ -21,6 +21,8 @@ public class User {
     private List<WorkerService> workerServices;
     private List<UserRole> userRoles;
 
+    private UserCartItem userCartItem;
+
     public Integer getIdUser() {
         return idUser;
     }
@@ -115,5 +117,13 @@ public class User {
 
     public void setUserRoles(List<UserRole> userRoles) {
         this.userRoles = userRoles;
+    }
+
+    public UserCartItem getUserCartItem() {
+        return userCartItem;
+    }
+
+    public void setUserCartItem(UserCartItem userCartItem) {
+        this.userCartItem = userCartItem;
     }
 }

@@ -16,6 +16,7 @@ public class ItemType implements Serializable {
 
     private List<ItemTypeServicePrice> itemTypeServicePrices;
     private List<Item> items;
+    private List<UserCartItem> userCartItems;
 
     private Integer itemCategoryId;
 
@@ -81,5 +82,13 @@ public class ItemType implements Serializable {
 
     public void setItems(List<Item> items) {
         this.items = items;
+    }
+
+    public List<UserCartItem> getUserCartItems() {
+        return userCartItems;
+    }
+
+    public void setUserCartItems(List<UserCartItem> userCartItems) {
+        this.userCartItems = userCartItems;
     }
 }

@@ -42,16 +42,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/cart_item_view"
+        android:layout_above="@id/cart_bottom_buttons"
         android:orientation="vertical">
-
-        <include layout="@layout/card_cart_item"></include>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view_cart_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipToPadding="false"
-            android:scrollbars="vertical"/>
+            android:scrollbars="vertical" />
 
 
 

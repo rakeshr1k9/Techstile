@@ -200,4 +200,6 @@ public class Item {
     public void setItemServicePrices(List<ItemServicePrice> itemServicePrices) {
         this.itemServicePrices = itemServicePrices;
     }
+
+
 }

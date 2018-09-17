@@ -84,7 +84,7 @@ public class ItemServicePriceAdapter extends RecyclerView.Adapter<ItemServicePri
 
     @Override
     public int getItemCount() {
-        return 0;
+        return itemServicePrices.size();
     }
 
     private void serviceImageDisplay(ImageView serviceImageLink, String displayServiceImageLink) {

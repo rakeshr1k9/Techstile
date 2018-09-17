@@ -48,8 +48,8 @@ public class ItemServiceAdapter extends RecyclerView.Adapter<ItemServiceAdapter.
 
         public ItemServiceViewHolder(View itemView) {
             super(itemView);
-            itemTotal = itemView.findViewById(R.id.txt_item_total);
-            itemDelete = itemView.findViewById(R.id.btn_item_delete);
+           /* itemTotal = itemView.findViewById(R.id.txt_item_total);
+            itemDelete = itemView.findViewById(R.id.btn_item_delete);*/
         }
     }
 
@@ -78,6 +78,6 @@ public class ItemServiceAdapter extends RecyclerView.Adapter<ItemServiceAdapter.
 
     @Override
     public int getItemCount() {
-        return 0;
+        return items.size();
     }
 }

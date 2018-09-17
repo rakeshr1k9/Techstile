@@ -1,5 +1,7 @@
 package ogmatech.com.techstile.model;
 
+import java.util.List;
+
 public class ItemTypeServicePrice {
 
     private Integer idItemTypeServicePrice;
