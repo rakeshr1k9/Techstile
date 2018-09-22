@@ -7,47 +7,52 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ogmatech.com.techstile.R;
-import ogmatech.com.techstile.controller.NewOrderController;
-import ogmatech.com.techstile.model.Item;
-import ogmatech.com.techstile.model.ItemExtraServicePrice;
-import ogmatech.com.techstile.model.ItemServicePrice;
-import ogmatech.com.techstile.model.ItemType;
-import ogmatech.com.techstile.wrapper.CartItemWrapper;
 import ogmatech.com.techstile.wrapper.ItemTypeServiceWrapper;
 
 public class ItemServiceAdapter extends RecyclerView.Adapter<ItemServiceAdapter.ItemServiceViewHolder> {
 
     private Context context;
+    private List<ItemTypeServiceWrapper> itemTypeServiceWrappers;
 
-    List<ItemTypeServiceWrapper> itemTypeServiceWrappers;
+    public interface ItemServiceChangeListner{
+        void onCheckboxChanged(Integer position, Boolean status);
+        void onTextEdited();
+    }
+
+    private ItemServiceChangeListner itemServiceChangeListner;
+
+    public void setItemServiceChangeListner(ItemServiceChangeListner itemServiceChangeListner) {
+        this.itemServiceChangeListner = itemServiceChangeListner;
+    }
 
     class ItemServiceViewHolder extends RecyclerView.ViewHolder{
 
         ImageView serviceIcon;
         EditText itemServicePriceEdit;
         TextView itemServiceInfo;
+        CheckBox itemServiceCheckbox;
 
         public ItemServiceViewHolder(View itemView) {
             super(itemView);
             serviceIcon = itemView.findViewById(R.id.icon_service);
             itemServiceInfo = itemView.findViewById(R.id.txt_item_service_info);
             itemServicePriceEdit = itemView.findViewById(R.id.edit_text_item_service_price);
+            itemServiceCheckbox = itemView.findViewById(R.id.check_box_item_service);
         }
     }
 
-    public ItemServiceAdapter(Context context, List<ItemTypeServiceWrapper> itemTypeServiceWrappers){
+    public ItemServiceAdapter(Context context, List<ItemTypeServiceWrapper> itemTypeServiceWrappers, ItemServiceChangeListner itemServiceChangeListner){
         this.context = context;
         this.itemTypeServiceWrappers = itemTypeServiceWrappers;
+        this.itemServiceChangeListner = itemServiceChangeListner;
     }
 
     @NonNull
@@ -66,18 +71,47 @@ public class ItemServiceAdapter extends RecyclerView.Adapter<ItemServiceAdapter.
 
         ItemTypeServiceWrapper itemTypeServiceWrapper = itemTypeServiceWrappers.get(position);
 
-        String imgName = itemTypeServiceWrapper.getServiceImageLink();
-        if(imgName.indexOf(".")>0)
-        {
-            imgName = imgName.substring(0, imgName.lastIndexOf("."));
-        }
-        String uri = "@drawable/"+imgName;
-        int imageResource = holder.itemView.getContext().getResources().getIdentifier(uri, null, holder.itemView.getContext().getPackageName());
-        Drawable res = holder.itemView.getContext().getResources().getDrawable(imageResource);
-        holder.serviceIcon.setImageDrawable(res);
-
         String serviceInfo = itemTypeServiceWrapper.getServiceName() + " - (Rs. " + itemTypeServiceWrapper.getServicePrice().toString()+"/-)";
         holder.itemServiceInfo.setText(serviceInfo);
+
+        String imgName = itemTypeServiceWrapper.getServiceImageLink();
+
+
+
+        if(itemTypeServiceWrapper.isSelected()){
+
+            imgName = "z" + imgName;
+            if(imgName.indexOf(".")>0)
+            {
+                imgName = imgName.substring(0, imgName.lastIndexOf("."));
+            }
+            String uri = "@drawable/"+imgName;
+            int imageResource = holder.itemView.getContext().getResources().getIdentifier(uri, null, holder.itemView.getContext().getPackageName());
+            Drawable res = holder.itemView.getContext().getResources().getDrawable(imageResource);
+            holder.serviceIcon.setImageDrawable(res);
+
+            holder.itemServicePriceEdit.setText(itemTypeServiceWrapper.getSelectedServicePrice().toString());
+
+            holder.itemServiceCheckbox.setChecked(true);
+            holder.itemServiceCheckbox.setOnClickListener(v->itemServiceChangeListner.onCheckboxChanged(position, false));
+
+        }
+        else {
+
+            if(imgName.indexOf(".")>0)
+            {
+                imgName = imgName.substring(0, imgName.lastIndexOf("."));
+            }
+            String uri = "@drawable/"+imgName;
+            int imageResource = holder.itemView.getContext().getResources().getIdentifier(uri, null, holder.itemView.getContext().getPackageName());
+            Drawable res = holder.itemView.getContext().getResources().getDrawable(imageResource);
+            holder.serviceIcon.setImageDrawable(res);
+
+            holder.itemServicePriceEdit.setVisibility(View.GONE);
+
+            holder.itemServiceCheckbox.setOnClickListener(v->itemServiceChangeListner.onCheckboxChanged(position, true));
+
+        }
 
     }
 

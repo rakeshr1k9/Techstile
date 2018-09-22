@@ -9,6 +9,7 @@ public class CartItemWrapper {
     private Integer userCartItemPrice;
     private String itemTypeName;
     private String itemTypeImageLink;
+    private Integer itemTypeId;
     private List<String> itemServices;
 
     public CartItemWrapper(){
@@ -53,6 +54,14 @@ public class CartItemWrapper {
 
     public void setItemTypeImageLink(String itemTypeImageLink) {
         this.itemTypeImageLink = itemTypeImageLink;
+    }
+
+    public Integer getItemTypeId() {
+        return itemTypeId;
+    }
+
+    public void setItemTypeId(Integer itemTypeId) {
+        this.itemTypeId = itemTypeId;
     }
 
     public List<String> getItemServices() {

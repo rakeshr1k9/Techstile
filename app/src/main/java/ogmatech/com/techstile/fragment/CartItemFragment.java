@@ -112,8 +112,10 @@ public class CartItemFragment extends Fragment {
                     }
 
                     itemCount.setText("Items: "+itemCountTemp);
-                    itemTotalPrice.setText("Amount: "+itemTotalPriceTemp+"/-");
-                });
+                    itemTotalPrice.setText("Amount: "+itemTotalPriceTemp+"/-")
+                    ;
+
+                }, throwable -> Log.d("error", "throwable erropr"));
 
     }
 

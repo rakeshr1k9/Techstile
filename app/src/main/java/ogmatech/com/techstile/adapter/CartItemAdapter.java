@@ -23,7 +23,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
     private List<CartItemWrapper> cartItemWrappers;
 
     public interface CartItemClickListner{
-        void onCartItemClicked();
+        void onCartItemClicked(CartItemWrapper cartItemWrapper);
         void onItemDeleteClicked(Integer idUserCartItem);
     }
 
@@ -86,13 +86,18 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
 
         holder.itemTypeName.setText(cartItemWrapper.getItemTypeName());
 
-        String itemServiceList = cartItemWrapper.getItemServices().stream().collect(Collectors.joining(", \n"));
+        String itemServiceList = "";
+        for(String services : cartItemWrapper.getItemServices()){
+            itemServiceList = itemServiceList+services+"\n";
+        }
         holder.itemServices.setText(itemServiceList);
 
         holder.userCartItemTypeCount.setText(cartItemWrapper.getUserCartItemTypeCount().toString());
         holder.userCartItemPrice.setText(cartItemWrapper.getUserCartItemPrice().toString()+"/-");
 
         holder.cartItemDelete.setOnClickListener(v->cartItemClickListner.onItemDeleteClicked(cartItemWrapper.getIdUserCartItem()));
+
+        holder.cartCardView.setOnClickListener(v -> cartItemClickListner.onCartItemClicked(cartItemWrapper));
 
     }
 

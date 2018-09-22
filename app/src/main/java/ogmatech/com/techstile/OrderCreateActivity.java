@@ -24,6 +24,7 @@ import java.util.List;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import ogmatech.com.techstile.adapter.CartItemAdapter;
+import ogmatech.com.techstile.adapter.ItemServiceAdapter;
 import ogmatech.com.techstile.adapter.ItemTypeAdapter;
 import ogmatech.com.techstile.api.service.CartItemService;
 import ogmatech.com.techstile.controller.NewOrderController;
@@ -36,8 +37,14 @@ import ogmatech.com.techstile.model.Item;
 import ogmatech.com.techstile.model.ItemStatus;
 import ogmatech.com.techstile.model.ItemType;
 import ogmatech.com.techstile.model.SearchString;
+import ogmatech.com.techstile.wrapper.CartItemWrapper;
+import ogmatech.com.techstile.wrapper.ItemTypeServiceWrapper;
 
-public class OrderCreateActivity extends BaseDrawerActivity implements CartItemFragment.OnItemAddListener,ItemTypeAdapter.ItemTypeClickListener, ItemServiceFragment.OnServiceAddListener, CartItemAdapter.CartItemClickListner {
+public class OrderCreateActivity extends BaseDrawerActivity implements CartItemFragment.OnItemAddListener,
+        ItemTypeAdapter.ItemTypeClickListener,
+        CartItemAdapter.CartItemClickListner{
+
+    ItemServiceFragment itemServiceFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,12 +141,13 @@ public class OrderCreateActivity extends BaseDrawerActivity implements CartItemF
 
     public void onItemTypeClicked(int position, ItemType itemType) {
         Bundle bundle = new Bundle();
+        bundle.putString("isComingFrom", "ItemTypeClick");
         bundle.putString("itemTypeName", itemType.getItemTypeName());
         bundle.putString("itemTypeImageLink",itemType.getItemTypeImageLink());
         bundle.putInt("idItemType",itemType.getIdItemType());
-        Fragment itemAddFragment = new ItemServiceFragment();
-        itemAddFragment.setArguments(bundle);
-        addFragment(itemAddFragment, "ItemServiceFragment");
+        Fragment itemServiceFragment = new ItemServiceFragment();
+        itemServiceFragment.setArguments(bundle);
+        addFragment(itemServiceFragment, "ItemServiceFragment");
     }
 
 
@@ -157,14 +165,23 @@ public class OrderCreateActivity extends BaseDrawerActivity implements CartItemF
     public void onBackPressed() {
         if (getTopFragment() instanceof ItemServiceFragment) {
             getSupportFragmentManager().popBackStack();
-            getSupportFragmentManager().popBackStack();
         } else {
             super.onBackPressed();
         }
     }
 
     @Override
-    public void onCartItemClicked() {
+    public void onCartItemClicked(CartItemWrapper cartItemWrapper) {
+
+        Bundle bundle = new Bundle();
+        bundle.putString("isComingFrom", "CartItemClick");
+        bundle.putInt("idUserCartItem", cartItemWrapper.getIdUserCartItem());
+        bundle.putString("itemTypeName", cartItemWrapper.getItemTypeName());
+        bundle.putString("itemTypeImageLink",cartItemWrapper.getItemTypeImageLink());
+        bundle.putInt("idItemType",cartItemWrapper.getItemTypeId());
+        Fragment itemServiceFragment = new ItemServiceFragment();
+        itemServiceFragment.setArguments(bundle);
+        addFragment(itemServiceFragment, "ItemServiceFragment");
 
     }
 
@@ -178,38 +195,19 @@ public class OrderCreateActivity extends BaseDrawerActivity implements CartItemF
         CartItemService.deleteCartItem(idUserCartItem)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((t -> {
-                    Log.d("LoginFragment", "Number of movies received: " + t);
+                .subscribe((() -> {
+                    Fragment frg;
+                    frg = getSupportFragmentManager().findFragmentByTag("CartItemFragment");
+                    final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    ft.detach(frg);
+                    ft.attach(frg);
+                    ft.commit();
+                    Log.d("LoginFragment", "Number of movies received: ");
                 }), onError-> {
                     Log.e("LoginFragment", onError.toString());
                 });
 
-        Fragment frg;
-        frg = getSupportFragmentManager().findFragmentByTag("CartItemFragment");
-        final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.detach(frg);
-        ft.attach(frg);
-        ft.commit();
-
     }
 
-    @Override
-    public void onItemIncrementClicked() {
 
-    }
-
-    @Override
-    public void onServiceSaveClicked() {
-
-    }
-
-    @Override
-    public void onItemDecrementClicked() {
-
-    }
-
-    @Override
-    public void onDeleteAllServiceClicked() {
-
-    }
 }

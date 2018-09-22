@@ -26,7 +26,7 @@ public class ItemTypeFragment extends Fragment {
     ViewPager viewPager;
     TabLayout tabLayout;
 
-   // List<ItemCategory> itemCategories = new ArrayList<>(StaticInfoController.getInstance().getItemCategoryHashMap().values());
+   List<ItemCategory> itemCategories = new ArrayList<>(StaticInfoController.getInstance().getItemCategories());
 
     public ItemTypeFragment() {
         // Required empty public constructor
@@ -54,6 +54,36 @@ public class ItemTypeFragment extends Fragment {
     }
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
+
+        private SectionsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            // getItem is called to instantiate the fragment for the given page.
+            // Return a PlaceholderFragment (defined as a static inner class below).
+
+            Bundle bundle = new Bundle();
+            bundle.putInt("categoryId",itemCategories.get(position).getIdItemCategory());
+            AllItemTypeFragment allItemTypeFragment = new AllItemTypeFragment();
+            allItemTypeFragment.setArguments(bundle);
+            return allItemTypeFragment;
+        }
+
+        @Override
+        public int getCount() {
+            return itemCategories == null ? 0 : itemCategories.size();
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            String tabTitle = itemCategories.get(position).getItemCategoryName();
+            return tabTitle;
+        }
+    }
+
+    /*public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         private SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -133,7 +163,7 @@ public class ItemTypeFragment extends Fragment {
             }
             return null;
         }
-    }
+    }*/
 
     @Override
     public void onResume() {

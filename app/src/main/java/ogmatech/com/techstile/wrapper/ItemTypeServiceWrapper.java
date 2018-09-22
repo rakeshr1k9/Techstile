@@ -6,6 +6,8 @@ public class ItemTypeServiceWrapper {
     private String serviceName;
     private Integer servicePrice;
     private String serviceImageLink;
+    private boolean isSelected;
+    private Integer selectedServicePrice;
 
     public Integer getIdItemService() {
         return idItemService;
@@ -37,5 +39,21 @@ public class ItemTypeServiceWrapper {
 
     public void setServiceImageLink(String serviceImageLink) {
         this.serviceImageLink = serviceImageLink;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+
+    public Integer getSelectedServicePrice() {
+        return selectedServicePrice;
+    }
+
+    public void setSelectedServicePrice(Integer selectedServicePrice) {
+        this.selectedServicePrice = selectedServicePrice;
     }
 }

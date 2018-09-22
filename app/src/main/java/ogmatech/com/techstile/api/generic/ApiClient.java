@@ -45,7 +45,7 @@ public class ApiClient {
     public static class Builder {
         private boolean addBearerToken = true;
         private String baseUrl = "http://192.168.1.144:8091/api/";
-       // private String baseUrl = "http://ogmaapi.ogmatech.in:80/api/";
+       // private String baseUrl = "http://ogmaapi.ogmatech.in:8091/api/";
 
         public Builder setAddBearerToken(boolean addBearerToken) {
             this.addBearerToken = addBearerToken;

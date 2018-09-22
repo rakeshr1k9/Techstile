@@ -2,9 +2,11 @@ package ogmatech.com.techstile.api;
 
 import java.util.List;
 
+import io.reactivex.Completable;
 import io.reactivex.Single;
 import ogmatech.com.techstile.wrapper.CartItemWrapper;
 import ogmatech.com.techstile.wrapper.ItemTypeServiceWrapper;
+import ogmatech.com.techstile.wrapper.ServiceSelectedWrapper;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -19,6 +21,9 @@ public interface CartItemApi {
     @GET("user/item-type-service/{id}")
     Single<List<ItemTypeServiceWrapper>> getItemTypeService(@Path("id") Integer idItemType);
 
+    @GET("user/cart-item-type-service/{id}")
+    Single<List<ServiceSelectedWrapper>> getCartItemTypeService(@Path("id") Integer idUserCartItem);
+
     @DELETE("user/user-cart-item-service/{id}")
-    Single<CartItemWrapper> deleteCartItem(@Path("id") Integer idUserCartItem);
+    Completable deleteCartItem(@Path("id") Integer idUserCartItem);
 }
