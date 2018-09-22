@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:layout_weight="1"
-            android:text="Items: 3"
+            android:text="Items: 0"
             android:textStyle="bold"
             android:textColor="@android:color/white"/>
         <TextView
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             android:layout_weight="1"
-            android:text="Amount: 5364/-"
+            android:text="Amount: 0/-"
             android:textStyle="bold"
             android:textAlignment="textEnd"
             android:textColor="@android:color/white"/>

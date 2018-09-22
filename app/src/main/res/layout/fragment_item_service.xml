@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
+    android:clickable="true"
     tools:context=".fragment.ItemServiceFragment">
 
     <android.support.v7.widget.Toolbar
@@ -71,7 +72,7 @@
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:padding="8dp"
-            android:text="Total : Rs. 2541/-"
+            android:text="Total : Rs. 0/-"
             android:textStyle="bold"
             android:textColor="@android:color/white"/>
 
@@ -96,7 +97,7 @@
             android:layout_centerHorizontal="true"
             android:layout_toLeftOf="@id/btn_increase_item"
             android:gravity="center"
-            android:text="79"
+            android:text="1"
             android:textStyle="bold"
             android:textColor="@android:color/white"/>
 

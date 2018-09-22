@@ -163,11 +163,12 @@ public class OrderCreateActivity extends BaseDrawerActivity implements CartItemF
 
     @Override
     public void onBackPressed() {
-        if (getTopFragment() instanceof ItemServiceFragment) {
+       /* if (getTopFragment() instanceof ItemServiceFragment) {
             getSupportFragmentManager().popBackStack();
         } else {
             super.onBackPressed();
-        }
+        }*/
+        super.onBackPressed();
     }
 
     @Override

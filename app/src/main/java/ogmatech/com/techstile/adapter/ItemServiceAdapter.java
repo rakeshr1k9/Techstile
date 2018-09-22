@@ -90,6 +90,7 @@ public class ItemServiceAdapter extends RecyclerView.Adapter<ItemServiceAdapter.
             Drawable res = holder.itemView.getContext().getResources().getDrawable(imageResource);
             holder.serviceIcon.setImageDrawable(res);
 
+            holder.itemServicePriceEdit.setVisibility(View.VISIBLE);
             holder.itemServicePriceEdit.setText(itemTypeServiceWrapper.getSelectedServicePrice().toString());
 
             holder.itemServiceCheckbox.setChecked(true);
@@ -109,6 +110,7 @@ public class ItemServiceAdapter extends RecyclerView.Adapter<ItemServiceAdapter.
 
             holder.itemServicePriceEdit.setVisibility(View.GONE);
 
+            holder.itemServiceCheckbox.setChecked(false);
             holder.itemServiceCheckbox.setOnClickListener(v->itemServiceChangeListner.onCheckboxChanged(position, true));
 
         }
