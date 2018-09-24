@@ -1,5 +1,6 @@
 package ogmatech.com.techstile.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
@@ -165,15 +166,16 @@ public class ItemTypeFragment extends Fragment {
         }
     }*/
 
+
     @Override
     public void onResume() {
         super.onResume();
         ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
     }
+
     @Override
     public void onStop() {
         super.onStop();
         ((AppCompatActivity)getActivity()).getSupportActionBar().show();
     }
-
 }

@@ -9,13 +9,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -105,7 +108,9 @@ public class ItemServiceFragment extends Fragment implements ItemServiceAdapter.
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(t -> {itemCount.setText(t.getUserCartItemTypeCount().toString());
-                    itemServiceTotalPrice.setText("Rs. "+t.getUserCartItemPrice().toString()+"/-");},
+                    itemServiceTotalPrice.setText("Rs. "+t.getUserCartItemPrice().toString()+"/-");
+                    itemCountText = t.getUserCartItemTypeCount();
+                    itemPriceText = t.getUserCartItemPrice();},
                             throwable -> Log.d("StatisInfooController", "loadStaticInfo: "));
 
             saveItem.setText("Update Item Service");
@@ -285,11 +290,6 @@ public class ItemServiceFragment extends Fragment implements ItemServiceAdapter.
        //((ItemServiceAdapter) itemServiceView.getAdapter()).notifyDataSetChanged();
     }
 
-    @Override
-    public void onTextEdited() {
-
-    }
-
     private void incrementItemCount() {
         String presentCountValue = itemCount.getText().toString();
         Integer presentCountValueInt = Integer.parseInt(presentCountValue);
@@ -309,8 +309,6 @@ public class ItemServiceFragment extends Fragment implements ItemServiceAdapter.
 
         itemCountText = presentCountValueInt;
         itemPriceText = presentPriceValueInt;
-
-
     }
 
     private void decrementItemCount() {
@@ -336,7 +334,6 @@ public class ItemServiceFragment extends Fragment implements ItemServiceAdapter.
             itemCountText = presentCountValueInt;
             itemPriceText = presentPriceValueInt;
         }
-
     }
 
     private void saveItemToCart() {
@@ -362,6 +359,7 @@ public class ItemServiceFragment extends Fragment implements ItemServiceAdapter.
 
         /* Service Save */
 
+        Integer serviceFlag = 0;
         List<ServiceSelectedWrapper> serviceSelectedWrappers = new ArrayList<>();
 
         for (ItemTypeServiceWrapper itemTypeServiceWrapper: itemTypeServiceWrappers){
@@ -370,29 +368,35 @@ public class ItemServiceFragment extends Fragment implements ItemServiceAdapter.
                 serviceSelectedWrapper.setServiceId(itemTypeServiceWrapper.getIdItemService());
                 serviceSelectedWrapper.setServicePrice(itemTypeServiceWrapper.getSelectedServicePrice());
                 serviceSelectedWrappers.add(serviceSelectedWrapper);
+                serviceFlag++;
             }
         }
 
-        CartItemService.getUserCartItem(userCartItem)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(t -> {
-                  CartItemService.getServiceSelectedWrappers(t.getIdUserCartItem(), serviceSelectedWrappers)
-                          .subscribeOn(Schedulers.io())
-                          .observeOn(AndroidSchedulers.mainThread())
-                          .subscribe(r->{
-                              getFragmentManager().popBackStack();
-                              getFragmentManager().popBackStack();
-                              Fragment frg;
-                              frg = getActivity().getSupportFragmentManager().findFragmentByTag("CartItemFragment");
-                              final FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                              ft.detach(frg);
-                              ft.attach(frg);
-                              ft.commit();
-                          },
-                                  throwable -> Log.d("StatisInfooController", "loadStaticInfo: "));
-                },
-                        throwable -> Log.d("StatisInfooController1", "loadStaticInfo: 1"));
+        if(serviceFlag==0){
+            Toast.makeText(getContext(),"Please select Service", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            CartItemService.getUserCartItem(userCartItem)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(t -> {
+                                CartItemService.getServiceSelectedWrappers(t.getIdUserCartItem(), serviceSelectedWrappers)
+                                        .subscribeOn(Schedulers.io())
+                                        .observeOn(AndroidSchedulers.mainThread())
+                                        .subscribe(r->{
+                                                    getFragmentManager().popBackStack();
+                                                    getFragmentManager().popBackStack();
+                                                    Fragment frg;
+                                                    frg = getActivity().getSupportFragmentManager().findFragmentByTag("CartItemFragment");
+                                                    final FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                                                    ft.detach(frg);
+                                                    ft.attach(frg);
+                                                    ft.commit();
+                                                },
+                                                throwable -> Log.d("StatisInfooController", "loadStaticInfo: "));
+                            },
+                            throwable -> Log.d("StatisInfooController1", "loadStaticInfo: 1"));
+        }
 
 
 
@@ -412,6 +416,7 @@ public class ItemServiceFragment extends Fragment implements ItemServiceAdapter.
 
         /* Service Save */
 
+        Integer serviceFlag = 0;
         List<ServiceSelectedWrapper> serviceSelectedWrappers = new ArrayList<>();
 
         for (ItemTypeServiceWrapper itemTypeServiceWrapper: itemTypeServiceWrappers){
@@ -420,36 +425,37 @@ public class ItemServiceFragment extends Fragment implements ItemServiceAdapter.
                 serviceSelectedWrapper.setServiceId(itemTypeServiceWrapper.getIdItemService());
                 serviceSelectedWrapper.setServicePrice(itemTypeServiceWrapper.getSelectedServicePrice());
                 serviceSelectedWrappers.add(serviceSelectedWrapper);
+                serviceFlag++;
             }
         }
 
-        CartItemService.putUserCartItem(idUserCartItem, userCartItem)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(t -> {
-                            CartItemService.getServiceSelectedWrappers(t.getIdUserCartItem(), serviceSelectedWrappers)
-                                    .subscribeOn(Schedulers.io())
-                                    .observeOn(AndroidSchedulers.mainThread())
-                                    .subscribe(r -> {
-                                                getFragmentManager().popBackStack();
-                                                Fragment frg;
-                                                frg = getActivity().getSupportFragmentManager().findFragmentByTag("CartItemFragment");
-                                                final FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                                                ft.detach(frg);
-                                                ft.attach(frg);
-                                                ft.commit();
-                                            },
-                                            onError -> {
-                                                Log.e("LoginFragment", onError.toString());
-                                            });
-                        },onError -> {
-                    Log.e("LoginFragment", onError.toString());
-                });
-
-                                            /*throwable -> Log.d("StatisInfooController", "loadStaticInfo: "));
-                        },
-                        throwable -> Log.d("StatisInfooController1", "loadStaticInfo: 1"));*/
-
+        if(serviceFlag==0){
+            Toast.makeText(getContext(),"Please select Service", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            CartItemService.putUserCartItem(idUserCartItem, userCartItem)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(t -> {
+                        CartItemService.getServiceSelectedWrappers(t.getIdUserCartItem(), serviceSelectedWrappers)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(r -> {
+                                            getFragmentManager().popBackStack();
+                                            Fragment frg;
+                                            frg = getActivity().getSupportFragmentManager().findFragmentByTag("CartItemFragment");
+                                            final FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                                            ft.detach(frg);
+                                            ft.attach(frg);
+                                            ft.commit();
+                                        },
+                                        onError -> {
+                                            Log.e("LoginFragment", onError.toString());
+                                        });
+                    }, onError -> {
+                        Log.e("LoginFragment", onError.toString());
+                    });
+        }
     }
 
     private void removeItemService() {
@@ -468,7 +474,10 @@ public class ItemServiceFragment extends Fragment implements ItemServiceAdapter.
                 }), onError-> {
                     Log.e("LoginFragment", onError.toString());
                 });
-
     }
 
+    @Override
+    public void onTextEdited() {
+
+    }
 }

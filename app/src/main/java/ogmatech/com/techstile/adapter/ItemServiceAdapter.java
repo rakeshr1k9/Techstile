@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +38,7 @@ public class ItemServiceAdapter extends RecyclerView.Adapter<ItemServiceAdapter.
     class ItemServiceViewHolder extends RecyclerView.ViewHolder{
 
         ImageView serviceIcon;
-        EditText itemServicePriceEdit;
+        TextView itemServicePriceEdit;
         TextView itemServiceInfo;
         CheckBox itemServiceCheckbox;
 

@@ -32,7 +32,7 @@ public class CartItemFragment extends Fragment {
     private CartItemAdapter cartItemAdapter;
 
     private TextView itemCount, itemTotalPrice;
-
+    private Integer itemCountForCheckout = 0;
 
     public CartItemFragment() {
 
@@ -40,7 +40,7 @@ public class CartItemFragment extends Fragment {
 
     public interface OnItemAddListener{
         void onAddItemClicked();
-        void onCheckoutClicked();
+        void onCheckoutClicked(Integer itemCountForCheckout);
     }
 
     private OnItemAddListener onItemAddListener;
@@ -69,7 +69,7 @@ public class CartItemFragment extends Fragment {
         addItem.setOnClickListener(v -> onItemAddListener.onAddItemClicked());
 
         Button checkout = view.findViewById(R.id.button_cart_checkout);
-        checkout.setOnClickListener(v -> onItemAddListener.onCheckoutClicked());
+        checkout.setOnClickListener(v -> onItemAddListener.onCheckoutClicked(itemCountForCheckout));
 
         recyclerView = view.findViewById(R.id.recycler_view_cart_item);
 
@@ -112,12 +112,11 @@ public class CartItemFragment extends Fragment {
                     }
 
                     itemCount.setText("Items: "+itemCountTemp);
-                    itemTotalPrice.setText("Amount: "+itemTotalPriceTemp+"/-")
-                    ;
+                    itemTotalPrice.setText("Amount: "+itemTotalPriceTemp+"/-");
+                    this.itemCountForCheckout = itemCountTemp;
 
-                }, throwable -> Log.d("error", "throwable erropr"));
 
+                }, throwable -> this.itemCountForCheckout = 0);//Log.d("error", "throwable erropr");
     }
-
 }
 

@@ -16,6 +16,10 @@
             android:icon="@drawable/ic_shopping_cart"
             android:title="Cart" />
         <item
+            android:id="@+id/base_customers"
+            android:icon="@drawable/ic_people"
+            android:title="Customers" />
+        <item
             android:id="@+id/base_reports"
             android:icon="@drawable/ic_assignment"
             android:title="Reports" />

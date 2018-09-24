@@ -17,34 +17,25 @@ import android.widget.Toast;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import ogmatech.com.techstile.adapter.CartItemAdapter;
-import ogmatech.com.techstile.adapter.ItemServiceAdapter;
 import ogmatech.com.techstile.adapter.ItemTypeAdapter;
 import ogmatech.com.techstile.api.service.CartItemService;
-import ogmatech.com.techstile.controller.NewOrderController;
-import ogmatech.com.techstile.controller.StaticInfoController;
 import ogmatech.com.techstile.fragment.CartItemFragment;
+import ogmatech.com.techstile.fragment.CheckoutDetailFragment;
 import ogmatech.com.techstile.fragment.ItemServiceFragment;
 import ogmatech.com.techstile.fragment.ItemTypeFragment;
-import ogmatech.com.techstile.model.Branch;
-import ogmatech.com.techstile.model.Item;
-import ogmatech.com.techstile.model.ItemStatus;
 import ogmatech.com.techstile.model.ItemType;
 import ogmatech.com.techstile.model.SearchString;
 import ogmatech.com.techstile.wrapper.CartItemWrapper;
-import ogmatech.com.techstile.wrapper.ItemTypeServiceWrapper;
 
 public class OrderCreateActivity extends BaseDrawerActivity implements CartItemFragment.OnItemAddListener,
         ItemTypeAdapter.ItemTypeClickListener,
         CartItemAdapter.CartItemClickListner{
 
     ItemServiceFragment itemServiceFragment;
+    CartItemFragment cartItemFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,8 +143,20 @@ public class OrderCreateActivity extends BaseDrawerActivity implements CartItemF
 
 
     @Override
-    public void onCheckoutClicked() {
-        Toast.makeText(this,"COB clicked", Toast.LENGTH_SHORT).show();
+    public void onCheckoutClicked(Integer itemCountForCheckout) {
+
+        if(itemCountForCheckout == 0){
+            Toast.makeText(this,"Please add items", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            /*Bundle bundle = new Bundle();
+            bundle.putString("isComingFrom", "CheckoutClick");
+            bundle.putInt("idUserCartItem", cartItemWrapper.getIdUserCartItem());*/
+            Fragment checkoutDetailFragment = new CheckoutDetailFragment();
+            //checkoutDetailFragment.setArguments(bundle);
+            addFragment(checkoutDetailFragment, "CheckoutDetailFragment");
+        }
+
     }
 
    /* @Override
