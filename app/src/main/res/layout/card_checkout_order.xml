@@ -42,7 +42,7 @@
                     android:layout_centerInParent="true"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:textColor="@android:color/darker_gray"/>
+                    android:textColor="#616161"/>
 
                 <View
                     android:id="@+id/line3"
@@ -52,7 +52,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_below="@id/txt_layout_heading_order_detail"
                     android:layout_margin="8dp"
-                    android:background="#000000" />
+                    android:background="#616161" />
 
             </RelativeLayout>
 
@@ -86,31 +86,41 @@
                     android:layout_marginBottom="2dp"
                     android:layout_toRightOf="@id/txt_stat_checkout_is_quick"/>
 
-                <Spinner
-                    android:id="@+id/spinner_checkout_quick_delivery_info"
+                <LinearLayout
+                    android:id="@+id/linear_layout_checkout_quick_order"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="2dp"
+                    android:orientation="horizontal"
                     android:layout_toRightOf="@id/check_box_quick_delivery">
 
-                </Spinner>
+                    <Spinner
+                        android:id="@+id/spinner_checkout_quick_delivery_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="2dp">
 
-                <TextView
-                    android:id="@+id/txt_quick_delivery_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_toRightOf="@id/spinner_checkout_quick_delivery_info"
-                    android:text="Rs. 1200/-"
-                    android:textColor="@android:color/black"
-                    android:textStyle="bold"
-                    android:textSize="14sp" />
+                    </Spinner>
+
+                    <TextView
+                        android:id="@+id/txt_quick_delivery_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="Rs. 1200/-"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="14sp" />
+
+
+                </LinearLayout>
 
             </RelativeLayout>
 

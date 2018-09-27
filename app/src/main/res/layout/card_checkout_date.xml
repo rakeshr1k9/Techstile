@@ -42,7 +42,7 @@
                     android:layout_centerInParent="true"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:textColor="@android:color/darker_gray"/>
+                    android:textColor="#616161"/>
 
                 <View
                     android:id="@+id/line3"
@@ -52,7 +52,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_below="@id/txt_layout_heading_date"
                     android:layout_margin="8dp"
-                    android:background="#000000" />
+                    android:background="#616161" />
 
             </RelativeLayout>
 
@@ -76,7 +76,7 @@
                     android:layout_alignParentTop="true"
                     android:text="Receiving at"
                     android:textColor="@android:color/black"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/txt_checkout_receive_date"
@@ -88,10 +88,10 @@
                     android:layout_marginBottom="8dp"
                     android:layout_alignParentTop="true"
                     android:layout_toRightOf="@id/txt_stat_checkout_receive_date"
-                    android:text="12/09/2018:12:52:00"
+                    android:text="12/09/2018:12:52"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
                 <ImageView
                     android:id="@+id/icon_checkout_receive_date_edit"
@@ -102,34 +102,45 @@
                     android:layout_marginEnd="12dp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
-                    android:src="@drawable/ic_edit_black"/>
+                    android:src="@drawable/ic_date_black"/>
+
+                <ImageView
+                    android:id="@+id/icon_checkout_receive_time_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_toLeftOf="@id/icon_checkout_receive_date_edit"
+                    android:src="@drawable/ic_time_black"/>
 
                 <TextView
                     android:id="@+id/txt_stat_checkout_delivery_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@id/txt_stat_checkout_receive_date"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="12dp"
                     android:layout_marginBottom="8dp"
                     android:layout_below="@id/txt_stat_checkout_receive_date"
                     android:text="Deliver at"
                     android:textColor="@android:color/black"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/txt_checkout_delivery_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="12dp"
                     android:layout_marginRight="8dp"
                     android:layout_marginBottom="10dp"
                     android:layout_below="@id/txt_checkout_receive_date"
                     android:layout_toRightOf="@id/txt_stat_checkout_delivery_date"
                     android:layout_alignStart="@id/txt_checkout_receive_date"
-                    android:text="12/09/2018:12:52:00"
+                    android:text="12/09/2018:12:52"
                     android:textColor="@android:color/black"
                     android:textStyle="bold"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
 
                 <ImageView
                     android:id="@+id/icon_checkout_delivery_date_edit"
@@ -139,7 +150,17 @@
                     android:layout_marginBottom="6dp"
                     android:layout_alignStart="@id/icon_checkout_receive_date_edit"
                     android:layout_below="@id/icon_checkout_receive_date_edit"
-                    android:src="@drawable/ic_edit_black"/>
+                    android:src="@drawable/ic_date_black"/>
+
+                <ImageView
+                    android:id="@+id/icon_checkout_delivery_time_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:layout_alignStart="@id/icon_checkout_receive_time_edit"
+                    android:layout_below="@id/icon_checkout_receive_time_edit"
+                    android:src="@drawable/ic_time_black"/>
 
             </RelativeLayout>
 
