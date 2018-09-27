@@ -40,4 +40,9 @@ public class CustomerType {
     public void setCustomerBranches(List<CustomerBranch> customerBranches) {
         this.customerBranches = customerBranches;
     }
+
+    @Override
+    public String toString() {
+        return customerTypeName;
+    }
 }
